@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "Player.h"
 
 class Game {
 
@@ -9,9 +10,11 @@ class Game {
 		sf::VideoMode videoMode;
 		sf::Event evt;
 
+		Player player;
 
 		void InitVars();
 		void InitWindow();
+		void InitObjects();
 
 	public:
 
@@ -20,7 +23,7 @@ class Game {
 
 		const bool running() const;
 
-		void PollEvents();
+		void Poll();
 		void Update();
 		void Render();
 };
