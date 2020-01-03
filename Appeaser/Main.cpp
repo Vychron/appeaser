@@ -1,28 +1,20 @@
 #include "Main.h"
 #include "iostream"
 
-#include <SFML/Graphics.hpp>
+#include "Game.h"
 
 int main() {
-	std::cout << "Hello world!";
-	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML Works!");
 
-	sf::CircleShape shape(100.f);
+	Game game;
 
-	shape.setFillColor(sf::Color::Green);
+	//Game update loop
+	while (game.running()) {
 
-	sf::Event event;
+		//Update
+		game.Update();
 
-	while (window.isOpen()) {
-		while (window.pollEvent(event)) {
-			if (event.type == sf::Event::Closed) {
-				window.close();
-			}
-		}
-
-		window.clear();
-		window.draw(shape);
-		window.display();
+		//Render
+		game.Render();
 	}
 
 	return 0;
