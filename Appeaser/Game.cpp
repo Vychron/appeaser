@@ -63,6 +63,7 @@ void Game::Poll() {
 				if (evt.key.code == sf::Keyboard::D) {
 					player.SetRightDirection(true);
 				}
+				
 				if (evt.key.code == sf::Keyboard::Space) {
 					for (int i = 0; i < count; i++) {
 						gravestones[i].Charge();
@@ -101,6 +102,17 @@ int Game::RandomNumber(int aMin, int aMax) {
 	std::uniform_int_distribution<> distr(aMin, aMax);
 	return distr(eng);
 }
+
+void Game::CheckCollisions() {
+	sf::FloatRect sprite = player.GetSprite().getGlobalBounds();
+	//checking graveStones
+	for (Gravestone g : gravestones) {
+		sf::FloatRect rect = g.GetSprite().getGlobalBounds();
+		if (sprite.intersects(rect)) {
+			player.ResetPos();
+		}
+	}
+}
 //~Functionality
 
 //Update
@@ -110,6 +122,8 @@ void Game::Update() {
 	for (int i = 0; i < count; i++) {
 		gravestones[i].Update();
 	}
+
+	CheckCollisions();
 }
 
 void Game::Render() {

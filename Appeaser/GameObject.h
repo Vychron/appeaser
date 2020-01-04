@@ -14,6 +14,7 @@ class GameObject {
 		virtual ~GameObject();
 
 		sf::Vector2f GetPosition();
+		sf::RectangleShape GetSprite();
 
 		void Render(sf::RenderWindow* aWindow);
 		

@@ -19,6 +19,7 @@ Moveable::~Moveable() {
 
 //Functionality
 void Moveable::Move() {
+	prevPos = position;
 	sf::Vector2f movement = velocity;
 	//Checking boundaries
 	if (position.x < 0 || position.x > 800) {
@@ -42,6 +43,11 @@ void Moveable::Move() {
 
 	//Updating position
 	position += movement;
+	sprite.setPosition(sf::Vector2f(position.x - (sprite.getSize().x / 2.f), position.y - (sprite.getSize().y / 2.f)));
+}
+
+void Moveable::ResetPos() {
+	position = prevPos;
 	sprite.setPosition(sf::Vector2f(position.x - (sprite.getSize().x / 2.f), position.y - (sprite.getSize().y / 2.f)));
 }
 //~Functionality
