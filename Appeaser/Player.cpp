@@ -1,13 +1,17 @@
 #include "Player.h"
 
-#include "iostream"
+Player::Player() : Moveable() {
+	upDirection = false;
+	downDirection = false;
+	leftDirection = false;
+	rightDirection = false;
+}
 
-Player::Player() {
-	this->upDirection = false;
-	this->downDirection = false;
-	this->leftDirection = false;
-	this->rightDirection = false;
-	this->velocity = sf::Vector2f(0.f, 0.f);
+Player::Player(sf::Vector2f aPosition, sf::RectangleShape aSprite) : Moveable (aPosition, aSprite) {
+	upDirection = false;
+	downDirection = false;
+	leftDirection = false;
+	rightDirection = false;
 }
 
 Player::~Player() {
@@ -15,57 +19,75 @@ Player::~Player() {
 }
 
 void Player::UpdateVelocity() {
-	sf::Vector2f vel = this->velocity;
+	sf::Vector2f vel = velocity;
 
 	//Horizontal velocity
-	if (this->leftDirection && !this->rightDirection) {
-		this->velocity.x = -.1f;
+	if (leftDirection && !rightDirection) {
+		velocity.x = -1.f;
 	}
-	else if (!this->leftDirection && this->rightDirection) {
-		this->velocity.x = .1f;
+	else if (!leftDirection && rightDirection) {
+		velocity.x = 1.f;
 	}
 	else {
-		this->velocity.x = 0.f;
+		velocity.x = 0.f;
 	}
 	//Vertical velocity
-	if (this->upDirection && !this->downDirection) {
-		this->velocity.y = -.1f;
+	if (upDirection && !downDirection) {
+		this->velocity.y = -1.f;
 	}
-	else if (!this->upDirection && this->downDirection) {
-		this->velocity.y = .1f;
+	else if (!upDirection && downDirection) {
+		velocity.y = 1.f;
 	}
 	else {
-		this->velocity.y = 0.f;
+		velocity.y = 0.f;
 	}
-	if (this->velocity != sf::Vector2f(0.f, 0.f) && this->velocity != vel) {
+
+	//Printing the output to the console
+	if (velocity != sf::Vector2f(0.f, 0.f) && velocity != vel) {
 		std::cout << "Moving";
-		if (this->velocity.y < 0.f) {
+		if (velocity.y < 0.f) {
 			std::cout << " Up";
 		}
-		else if (this->velocity.y > 0.f) {
+		else if (velocity.y > 0.f) {
 			std::cout << " Down";
 		}
-		if (this->velocity.x != 0.f && this->velocity.y != 0.f) {
+		if (velocity.x != 0.f && velocity.y != 0.f) {
 			std::cout << " and";
 		}
-		if (this->velocity.x < 0.f) {
+		if (velocity.x < 0.f) {
 			std::cout << " Left";
 		}
-		else if (this->velocity.x > 0.f) {
+		else if (velocity.x > 0.f) {
 			std::cout << " Right";
 		}
 		std::cout << ".\n";
 	}
 }
 
+
+void Player::SetUpDirection(bool active) {
+	upDirection = active;
+}
+void Player::SetDownDirection(bool active) {
+	downDirection = active;
+}
+void Player::SetLeftDirection(bool active) {
+	leftDirection = active;
+}
+void Player::SetRightDirection(bool active) {
+	rightDirection = active;
+}
+
+
 void Player::Init() {
-	
+	sprite.setFillColor(sf::Color::Blue);
 }
 
 void Player::Update() {
-	this->UpdateVelocity();
+	UpdateVelocity();
+	Moveable::Update();
 }
 
-void Player::Render() {
-
+void Player::Render(sf::RenderWindow* aWindow) {
+	Moveable::Render(aWindow);
 }

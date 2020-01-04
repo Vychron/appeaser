@@ -1,79 +1,75 @@
 #include "Game.h"
 
-#include "Player.h"
-
-#include "iostream"
-
 Game::Game() {
-	this->InitVars();
-	this->InitWindow();
+	player = Player(sf::Vector2f(100.f, 100.f), sf::RectangleShape(sf::Vector2f(32.f, 32.f)));
+	InitVars();
+	InitWindow();
 }
 
 Game::~Game() {
-	delete this->window;
-	//delete this->player;
+	delete window;
 }
 
 void Game::InitVars() {
-	this->window = nullptr;
+	window = nullptr;
 }
 
 void Game::InitWindow() {
-	this->videoMode.width = 800;
-	this->videoMode.height = 600;
-	this->window = new sf::RenderWindow(this->videoMode, "Appeaser", sf::Style::Titlebar | sf::Style::Close);
-	this->window->setFramerateLimit(60);
+	videoMode.width = 800;
+	videoMode.height = 600;
+	window = new sf::RenderWindow(videoMode, "Appeaser", sf::Style::Titlebar | sf::Style::Close);
+	window->setFramerateLimit(60);
 }
 
 void Game::InitObjects() {
 
-	this->player.Init();
+	player.Init();
 }
 
 const bool Game::running() const {
-	return this->window->isOpen();
+	return window->isOpen();
 }
 
 //Functions
 
 //Input
 void Game::Poll() {
-	while (this->window->pollEvent(this->evt)) {
+	while (window->pollEvent(evt)) {
 		//Player movement
-		switch (this->evt.type) {
+		switch (evt.type) {
 			//Closing the game
 			case (sf::Event::Closed):
 				std::cout << "closing the game";
-				this->window->close();
+				window->close();
 				break;
 
 			//Player movement
 			case (sf::Event::KeyPressed):
-				if (this->evt.key.code == sf::Keyboard::W) {
-					this->player.upDirection = true;
+				if (evt.key.code == sf::Keyboard::W) {
+					player.SetUpDirection(true);
 				}
-				if (this->evt.key.code == sf::Keyboard::S) {
-					this->player.downDirection = true;
+				if (evt.key.code == sf::Keyboard::S) {
+					player.SetDownDirection(true);
 				}
-				if (this->evt.key.code == sf::Keyboard::A) {
-					this->player.leftDirection = true;
+				if (evt.key.code == sf::Keyboard::A) {
+					player.SetLeftDirection(true);
 				}
-				if (this->evt.key.code == sf::Keyboard::D) {
-					this->player.rightDirection = true;
+				if (evt.key.code == sf::Keyboard::D) {
+					player.SetRightDirection(true);
 				}
 				break;
 			case (sf::Event::KeyReleased):
-				if (this->evt.key.code == sf::Keyboard::W) {
-					this->player.upDirection = false;
+				if (evt.key.code == sf::Keyboard::W) {
+					player.SetUpDirection(false);
 				}
-				if (this->evt.key.code == sf::Keyboard::S) {
-					this->player.downDirection = false;
+				if (evt.key.code == sf::Keyboard::S) {
+					player.SetDownDirection(false);
 				}
-				if (this->evt.key.code == sf::Keyboard::A) {
-					this->player.leftDirection = false;
+				if (evt.key.code == sf::Keyboard::A) {
+					player.SetLeftDirection(false);
 				}
-				if (this->evt.key.code == sf::Keyboard::D) {
-					this->player.rightDirection = false;
+				if (evt.key.code == sf::Keyboard::D) {
+					player.SetRightDirection(false);
 				}
 				break;
 		}		
@@ -82,16 +78,15 @@ void Game::Poll() {
 
 
 void Game::Update() {
-	this->Poll();
+	Poll();
 
-	this->player.Update();
+	player.Update();
 }
 
 void Game::Render() {
-	this->window->clear(sf::Color(50, 200, 100));
+	window->clear(sf::Color(50, 200, 100));
 
-	//this->player->Render();
+	player.Render(window);
 
-
-	this->window->display();
+	window->display();
 }

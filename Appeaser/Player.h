@@ -1,26 +1,34 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
+#include "Moveable.h"
 
-class Player {
+class Player : public Moveable {
 
+		
 	private:
+
 		void UpdateVelocity();
-
-	public:
-
+	
 		bool upDirection;
 		bool downDirection;
 		bool leftDirection;
 		bool rightDirection;
-		sf::Vector2f velocity;
 
+	public:
+	
 		Player();
+		Player(sf::Vector2f aPosition, sf::RectangleShape aSprite);
 		virtual ~Player();
+	
+		void SetUpDirection(bool active);
+		void SetDownDirection(bool active);
+		void SetLeftDirection(bool active);
+		void SetRightDirection(bool active);
 
 		void Init();
 		void Update();
-		void Render();
+		void Render(sf::RenderWindow* aWindow);
 
+	protected:
 };
 
