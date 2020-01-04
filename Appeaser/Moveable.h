@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Object.h"
+#include "GameObject.h"
 
-class Moveable : public Object {
+class Moveable : public GameObject {
 
 	private:
 

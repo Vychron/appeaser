@@ -1,5 +1,6 @@
 #include "Player.h"
 
+//Construction
 Player::Player() : Moveable() {
 	upDirection = false;
 	downDirection = false;
@@ -17,7 +18,15 @@ Player::Player(sf::Vector2f aPosition, sf::RectangleShape aSprite) : Moveable (a
 Player::~Player() {
 
 }
+//~Construction
 
+//Initialization
+void Player::Init() {
+	sprite.setFillColor(sf::Color::Blue);
+}
+//~Initialization
+
+//Functionality
 void Player::UpdateVelocity() {
 	sf::Vector2f vel = velocity;
 
@@ -64,7 +73,6 @@ void Player::UpdateVelocity() {
 	}
 }
 
-
 void Player::SetUpDirection(bool active) {
 	upDirection = active;
 }
@@ -77,12 +85,9 @@ void Player::SetLeftDirection(bool active) {
 void Player::SetRightDirection(bool active) {
 	rightDirection = active;
 }
+//~Functionality
 
-
-void Player::Init() {
-	sprite.setFillColor(sf::Color::Blue);
-}
-
+//Update
 void Player::Update() {
 	UpdateVelocity();
 	Moveable::Update();
@@ -91,3 +96,4 @@ void Player::Update() {
 void Player::Render(sf::RenderWindow* aWindow) {
 	Moveable::Render(aWindow);
 }
+//~Update

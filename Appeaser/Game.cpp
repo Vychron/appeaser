@@ -1,5 +1,6 @@
 #include "Game.h"
 
+//Construction
 Game::Game() {
 	player = Player(sf::Vector2f(100.f, 100.f), sf::RectangleShape(sf::Vector2f(32.f, 32.f)));
 	InitVars();
@@ -9,7 +10,9 @@ Game::Game() {
 Game::~Game() {
 	delete window;
 }
+//~Construction
 
+//Initialization
 void Game::InitVars() {
 	window = nullptr;
 }
@@ -25,14 +28,13 @@ void Game::InitObjects() {
 
 	player.Init();
 }
+//~Initialization
 
+//Functionality
 const bool Game::running() const {
 	return window->isOpen();
 }
 
-//Functions
-
-//Input
 void Game::Poll() {
 	while (window->pollEvent(evt)) {
 		//Player movement
@@ -75,8 +77,9 @@ void Game::Poll() {
 		}		
 	}
 }
+//~Functionality
 
-
+//Update
 void Game::Update() {
 	Poll();
 
@@ -90,3 +93,4 @@ void Game::Render() {
 
 	window->display();
 }
+//~Update

@@ -1,17 +1,23 @@
 #include "Moveable.h"
 
-Moveable::Moveable() : Object() {
+//Construction
+Moveable::Moveable() : GameObject() {
 
 }
 
-Moveable::Moveable(sf::Vector2f aPosition, sf::RectangleShape aSprite) : Object(aPosition, aSprite) {
+Moveable::Moveable(sf::Vector2f aPosition, sf::RectangleShape aSprite) : GameObject(aPosition, aSprite) {
 
 }
 
 Moveable::~Moveable() {
 
 }
+//~Construction
 
+//Initialization
+//~Initialization
+
+//Functionality
 void Moveable::Move() {
 	sf::Vector2f movement = velocity;
 	//Checking boundaries
@@ -38,11 +44,14 @@ void Moveable::Move() {
 	position += movement;
 	sprite.setPosition(sf::Vector2f(position.x - (sprite.getSize().x / 2.f), position.y - (sprite.getSize().y / 2.f)));
 }
+//~Functionality
 
+//Update
 void Moveable::Update() {
 	Move();
 }
 
 void Moveable::Render(sf::RenderWindow* aWindow) {
-	Object::Render(aWindow);
+	GameObject::Render(aWindow);
 }
+//~Update

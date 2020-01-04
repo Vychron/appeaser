@@ -1,6 +1,3 @@
-#include "Main.h"
-#include "iostream"
-
 #include "Game.h"
 
 int main() {
