@@ -11,7 +11,7 @@ class Moveable : public GameObject {
 		Moveable();
 		Moveable(sf::Vector2f aPosition, sf::RectangleShape aSprite);
 		virtual ~Moveable();
-	
+		
 		void Update();
 		void Render(sf::RenderWindow* aWindow);
 

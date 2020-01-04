@@ -8,6 +8,7 @@ GameObject::GameObject() {
 GameObject::GameObject(sf::Vector2f aPosition, sf::RectangleShape aSprite) {
 	position = aPosition;
 	sprite = aSprite;
+	sprite.setPosition(sf::Vector2f(position.x - (sprite.getSize().x / 2.f), position.y - (sprite.getSize().y / 2.f)));
 }
 
 GameObject::~GameObject() {

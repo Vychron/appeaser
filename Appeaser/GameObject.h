@@ -14,6 +14,7 @@ class GameObject {
 		virtual ~GameObject();
 
 		sf::Vector2f GetPosition();
+
 		void Render(sf::RenderWindow* aWindow);
 		
 	protected:
