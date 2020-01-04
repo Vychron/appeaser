@@ -2,6 +2,9 @@
 
 #include <SFML/Graphics.hpp>
 #include "Player.h"
+#include "Gravestone.h"
+#include <vector>
+#include <random>
 
 class Game {
 
@@ -9,8 +12,13 @@ class Game {
 		sf::RenderWindow* window;
 		sf::VideoMode videoMode;
 		sf::Event evt;
+		int count = 10;
 
 		Player player;
+		Gravestone gravestones[10];
+
+		void GenerateGravestones();
+		int RandomNumber(int aMin, int aMax);
 
 		void InitVars();
 		void InitWindow();

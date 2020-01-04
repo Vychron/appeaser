@@ -1,18 +1,20 @@
 #pragma once
+
 #include <SFML/Graphics.hpp>
 #include "iostream"
 
-class Object {
+class GameObject {
 
 	private:
 
 	public:
 
-		Object();
-		Object(sf::Vector2f aPosition, sf::RectangleShape aSprite);
-		virtual ~Object();
+		GameObject();
+		GameObject(sf::Vector2f aPosition, sf::RectangleShape aSprite);
+		virtual ~GameObject();
 
 		sf::Vector2f GetPosition();
+
 		void Render(sf::RenderWindow* aWindow);
 		
 	protected:

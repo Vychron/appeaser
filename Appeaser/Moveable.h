@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Object.h"
+#include "GameObject.h"
 
-class Moveable : public Object {
+class Moveable : public GameObject {
 
 	private:
 
@@ -11,7 +11,7 @@ class Moveable : public Object {
 		Moveable();
 		Moveable(sf::Vector2f aPosition, sf::RectangleShape aSprite);
 		virtual ~Moveable();
-	
+		
 		void Update();
 		void Render(sf::RenderWindow* aWindow);
 
