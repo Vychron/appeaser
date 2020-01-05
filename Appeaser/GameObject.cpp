@@ -24,6 +24,10 @@ GameObject::~GameObject() {
 sf::Vector2f GameObject::GetPosition() {
 	return position;
 }
+
+sf::RectangleShape GameObject::GetSprite() {
+	return sprite;
+}
 //~Functionality
 
 //Update

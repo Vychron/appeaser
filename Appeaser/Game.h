@@ -19,6 +19,7 @@ class Game {
 
 		void GenerateGravestones();
 		int RandomNumber(int aMin, int aMax);
+		void CheckCollisions();
 
 		void InitVars();
 		void InitWindow();
