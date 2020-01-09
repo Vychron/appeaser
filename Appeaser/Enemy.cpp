@@ -36,6 +36,11 @@ void Enemy::UpdateVelocity() {
 	}
 }
 
+void Enemy::RecalculateVelocity() {
+	velocity = sf::Vector2f(0.f, 0.f);
+	stepCount = stepCountMax;
+}
+
 void Enemy::PassPlayerPosition(sf::Vector2f aPosition) {
 	playerPosition = aPosition;
 }
