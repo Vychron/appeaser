@@ -9,10 +9,10 @@ class Player : public Moveable {
 
 		void UpdateVelocity();
 	
-		bool upDirection;
-		bool downDirection;
-		bool leftDirection;
-		bool rightDirection;
+		bool upDirection = false;
+		bool downDirection = false;
+		bool leftDirection = false;
+		bool rightDirection = false;
 
 	public:
 	
@@ -28,7 +28,5 @@ class Player : public Moveable {
 		void Init();
 		void Update();
 		void Render(sf::RenderWindow* aWindow);
-
-	protected:
 };
 

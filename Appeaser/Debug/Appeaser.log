@@ -1,27 +1,25 @@
-﻿  Game.cpp
-D:\Projects\Appeaser\Appeaser\Game.cpp(93,90): warning C4244:  'argument': conversion from 'int' to 'T', possible loss of data
-D:\Projects\Appeaser\Appeaser\Game.cpp(93,90): warning C4244:         with
-D:\Projects\Appeaser\Appeaser\Game.cpp(93,90): warning C4244:         [
-D:\Projects\Appeaser\Appeaser\Game.cpp(93,90): warning C4244:             T=float
-D:\Projects\Appeaser\Appeaser\Game.cpp(93,90): warning C4244:         ]
+﻿  Enemy.cpp
+D:\Projects\Appeaser\Appeaser\Enemy.cpp(34,103): warning C4244:  'argument': conversion from 'int' to 'T', possible loss of data
+D:\Projects\Appeaser\Appeaser\Enemy.cpp(34,103): warning C4244:         with
+D:\Projects\Appeaser\Appeaser\Enemy.cpp(34,103): warning C4244:         [
+D:\Projects\Appeaser\Appeaser\Enemy.cpp(34,103): warning C4244:             T=float
+D:\Projects\Appeaser\Appeaser\Enemy.cpp(34,103): warning C4244:         ]
+  Game.cpp
+D:\Projects\Appeaser\Appeaser\Enemy.cpp(34,61): warning C4244:  'argument': conversion from 'int' to 'T', possible loss of data
+D:\Projects\Appeaser\Appeaser\Enemy.cpp(34,61): warning C4244:         with
+D:\Projects\Appeaser\Appeaser\Enemy.cpp(34,61): warning C4244:         [
+D:\Projects\Appeaser\Appeaser\Enemy.cpp(34,61): warning C4244:             T=float
+D:\Projects\Appeaser\Appeaser\Enemy.cpp(34,61): warning C4244:         ]
+D:\Projects\Appeaser\Appeaser\Game.cpp(94,132): warning C4244:  'argument': conversion from 'int' to 'T', possible loss of data
+D:\Projects\Appeaser\Appeaser\Game.cpp(94,132): warning C4244:         with
+D:\Projects\Appeaser\Appeaser\Game.cpp(94,132): warning C4244:         [
+D:\Projects\Appeaser\Appeaser\Game.cpp(94,132): warning C4244:             T=float
+D:\Projects\Appeaser\Appeaser\Game.cpp(94,132): warning C4244:         ]
   Main.cpp
-  Moveable.cpp
-  Player.cpp
   Generating Code...
-D:\Projects\Appeaser\Appeaser\Game.cpp(93,56): warning C4244:  'argument': conversion from 'int' to 'T', possible loss of data
-D:\Projects\Appeaser\Appeaser\Game.cpp(93,56): warning C4244:         with
-D:\Projects\Appeaser\Appeaser\Game.cpp(93,56): warning C4244:         [
-D:\Projects\Appeaser\Appeaser\Game.cpp(93,56): warning C4244:             T=float
-D:\Projects\Appeaser\Appeaser\Game.cpp(93,56): warning C4244:         ]
-Game.obj : error LNK2019: unresolved external symbol "public: __thiscall Gravestone::Gravestone(void)" (??0Gravestone@@QAE@XZ) referenced in function "public: __thiscall Game::Game(void)" (??0Game@@QAE@XZ)
-Game.obj : error LNK2019: unresolved external symbol "public: __thiscall Gravestone::Gravestone(class sf::Vector2<float>,class sf::RectangleShape,int)" (??0Gravestone@@QAE@V?$Vector2@M@sf@@VRectangleShape@2@H@Z) referenced in function "private: void __thiscall Game::GenerateGravestones(void)" (?GenerateGravestones@Game@@AAEXXZ)
-Game.obj : error LNK2019: unresolved external symbol "public: virtual __thiscall Gravestone::~Gravestone(void)" (??1Gravestone@@UAE@XZ) referenced in function "public: __thiscall Game::Game(void)" (??0Game@@QAE@XZ)
-Game.obj : error LNK2019: unresolved external symbol "public: void __thiscall Gravestone::Charge(void)" (?Charge@Gravestone@@QAEXXZ) referenced in function "public: void __thiscall Game::Poll(void)" (?Poll@Game@@QAEXXZ)
-Game.obj : error LNK2019: unresolved external symbol "public: void __thiscall Gravestone::Init(void)" (?Init@Gravestone@@QAEXXZ) referenced in function "private: void __thiscall Game::InitObjects(void)" (?InitObjects@Game@@AAEXXZ)
-Game.obj : error LNK2019: unresolved external symbol "public: void __thiscall Gravestone::Update(void)" (?Update@Gravestone@@QAEXXZ) referenced in function "public: void __thiscall Game::Update(void)" (?Update@Game@@QAEXXZ)
-Game.obj : error LNK2019: unresolved external symbol "public: void __thiscall Gravestone::Render(class sf::RenderWindow *)" (?Render@Gravestone@@QAEXPAVRenderWindow@sf@@@Z) referenced in function "public: void __thiscall Game::Render(void)" (?Render@Game@@QAEXXZ)
-Moveable.obj : error LNK2019: unresolved external symbol "public: __thiscall GameObject::GameObject(void)" (??0GameObject@@QAE@XZ) referenced in function "public: __thiscall Moveable::Moveable(void)" (??0Moveable@@QAE@XZ)
-Moveable.obj : error LNK2019: unresolved external symbol "public: __thiscall GameObject::GameObject(class sf::Vector2<float>,class sf::RectangleShape)" (??0GameObject@@QAE@V?$Vector2@M@sf@@VRectangleShape@2@@Z) referenced in function "public: __thiscall Moveable::Moveable(class sf::Vector2<float>,class sf::RectangleShape)" (??0Moveable@@QAE@V?$Vector2@M@sf@@VRectangleShape@2@@Z)
-Moveable.obj : error LNK2019: unresolved external symbol "public: virtual __thiscall GameObject::~GameObject(void)" (??1GameObject@@UAE@XZ) referenced in function __unwindfunclet$??0Moveable@@QAE@V?$Vector2@M@sf@@VRectangleShape@2@@Z$2
-Moveable.obj : error LNK2019: unresolved external symbol "public: void __thiscall GameObject::Render(class sf::RenderWindow *)" (?Render@GameObject@@QAEXPAVRenderWindow@sf@@@Z) referenced in function "public: void __thiscall Moveable::Render(class sf::RenderWindow *)" (?Render@Moveable@@QAEXPAVRenderWindow@sf@@@Z)
-D:\Projects\Appeaser\Appeaser\Debug\Appeaser.exe : fatal error LNK1120: 11 unresolved externals
+D:\Projects\Appeaser\Appeaser\Game.cpp(94,77): warning C4244:  'argument': conversion from 'int' to 'T', possible loss of data
+D:\Projects\Appeaser\Appeaser\Game.cpp(94,77): warning C4244:         with
+D:\Projects\Appeaser\Appeaser\Game.cpp(94,77): warning C4244:         [
+D:\Projects\Appeaser\Appeaser\Game.cpp(94,77): warning C4244:             T=float
+D:\Projects\Appeaser\Appeaser\Game.cpp(94,77): warning C4244:         ]
+  Appeaser.vcxproj -> D:\Projects\Appeaser\Appeaser\Debug\Appeaser.exe

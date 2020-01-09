@@ -5,8 +5,6 @@
 
 class GameObject {
 
-	private:
-
 	public:
 
 		GameObject();
@@ -22,6 +20,5 @@ class GameObject {
 
 		sf::Vector2f position;
 		sf::RectangleShape sprite;
-		
 };
 

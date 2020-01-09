@@ -1,20 +1,7 @@
-﻿  Game.cpp
-D:\Projects\Appeaser\Appeaser\Game.cpp(94,90): warning C4244:  'argument': conversion from 'int' to 'T', possible loss of data
-D:\Projects\Appeaser\Appeaser\Game.cpp(94,90): warning C4244:         with
-D:\Projects\Appeaser\Appeaser\Game.cpp(94,90): warning C4244:         [
-D:\Projects\Appeaser\Appeaser\Game.cpp(94,90): warning C4244:             T=float
-D:\Projects\Appeaser\Appeaser\Game.cpp(94,90): warning C4244:         ]
-  Main.cpp
-  Moveable.cpp
-  Player.cpp
-D:\Projects\Appeaser\Appeaser\Game.cpp(94,56): warning C4244:  'argument': conversion from 'int' to 'T', possible loss of data
-D:\Projects\Appeaser\Appeaser\Game.cpp(94,56): warning C4244:         with
-D:\Projects\Appeaser\Appeaser\Game.cpp(94,56): warning C4244:         [
-D:\Projects\Appeaser\Appeaser\Game.cpp(94,56): warning C4244:             T=float
-D:\Projects\Appeaser\Appeaser\Game.cpp(94,56): warning C4244:         ]
+﻿  Enemy.cpp
   Generating code
-  31 of 199 functions (15.6%) were compiled, the rest were copied from previous compilation.
+  3 of 220 functions ( 1.4%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    11 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Appeaser.vcxproj -> D:\Projects\Appeaser\Appeaser\Release\Appeaser.exe

@@ -4,8 +4,6 @@
 
 class Moveable : public GameObject {
 
-	private:
-
 	public:
 
 		Moveable();
@@ -19,9 +17,9 @@ class Moveable : public GameObject {
 
 	protected:
 		
-		sf::Vector2f prevPos;
+		float moveSpeed = 0;
 		sf::Vector2f velocity;
-
+		sf::Vector2f prevPos;
 		void Move();
 };
 
