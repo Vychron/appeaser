@@ -2,17 +2,11 @@
 
 //Construction
 Player::Player() : Moveable() {
-	upDirection = false;
-	downDirection = false;
-	leftDirection = false;
-	rightDirection = false;
+
 }
 
 Player::Player(sf::Vector2f aPosition, sf::RectangleShape aSprite) : Moveable (aPosition, aSprite) {
-	upDirection = false;
-	downDirection = false;
-	leftDirection = false;
-	rightDirection = false;
+
 }
 
 Player::~Player() {
@@ -22,6 +16,7 @@ Player::~Player() {
 
 //Initialization
 void Player::Init() {
+	moveSpeed = 2.f;
 	sprite.setFillColor(sf::Color::Blue);
 }
 //~Initialization
@@ -53,7 +48,7 @@ void Player::UpdateVelocity() {
 
 	//Printing the output to the console
 	if (velocity != sf::Vector2f(0.f, 0.f) && velocity != vel) {
-		std::cout << "Moving";
+		std::cout << "Player is moving";
 		if (velocity.y < 0.f) {
 			std::cout << " Up";
 		}

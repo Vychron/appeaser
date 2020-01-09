@@ -3,6 +3,7 @@
 //Construction
 GameObject::GameObject() {
 	sprite = sf::RectangleShape(sf::Vector2f(32.f, 32.f));
+	position = sf::Vector2f(0.f, 0.f);
 }
 
 GameObject::GameObject(sf::Vector2f aPosition, sf::RectangleShape aSprite) {

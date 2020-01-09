@@ -3,22 +3,21 @@
 #include <SFML/Graphics.hpp>
 #include "Player.h"
 #include "Gravestone.h"
-#include <vector>
-#include <random>
+#include "Enemy.h"
 
 class Game {
 
 	private:
+
 		sf::RenderWindow* window;
 		sf::VideoMode videoMode;
 		sf::Event evt;
-		int count = 10;
+		int count = 1;
 
-		Player player;
-		Gravestone gravestones[10];
+		Gravestone gravestones[1];
+		Enemy enemies[1];
 
 		void GenerateGravestones();
-		int RandomNumber(int aMin, int aMax);
 		void CheckCollisions();
 
 		void InitVars();
@@ -35,5 +34,9 @@ class Game {
 		void Poll();
 		void Update();
 		void Render();
+
+	protected:
+
+		Player player;
 };
 

@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "NumberOperations.h"
 
 //Construction
 Game::Game() {
@@ -28,8 +29,8 @@ void Game::InitWindow() {
 
 void Game::InitObjects() {
 	player.Init();
-	for (int i = 0; i < count; i++) {
-		gravestones[i].Init();
+	for (Gravestone g : gravestones) {
+		g.Init();
 	}
 }
 //~Initialization
@@ -89,18 +90,11 @@ void Game::Poll() {
 }
 
 void Game::GenerateGravestones() {
-	//count = sizeof(gravestones);
 	for (int i = 0; i < count; i++) {
-		gravestones[i] = Gravestone(sf::Vector2f(RandomNumber(0, videoMode.width), RandomNumber(0, videoMode.height)), sf::RectangleShape(sf::Vector2f(32.f, 32.f)), RandomNumber(0, 8));
+		gravestones[i] = Gravestone(sf::Vector2f(NumberOperations::GetRandomNumber(0, videoMode.width), NumberOperations::GetRandomNumber(0, videoMode.height)), sf::RectangleShape(sf::Vector2f(32.f, 32.f)), NumberOperations::GetRandomNumber(0, 8));
+		enemies[i] = Enemy(sf::Vector2f(-32.f, -32.f), sf::RectangleShape(sf::Vector2f(32.f, 32.f)));
+		enemies[i].GetSprite().setScale(sf::Vector2f(0.f, 0.f));
 	}
-	std::cout << count;
-}
-
-int Game::RandomNumber(int aMin, int aMax) {
-	std::random_device rd;
-	std::mt19937 eng(rd());
-	std::uniform_int_distribution<> distr(aMin, aMax);
-	return distr(eng);
 }
 
 void Game::CheckCollisions() {
@@ -120,9 +114,14 @@ void Game::Update() {
 	Poll();
 	player.Update();
 	for (int i = 0; i < count; i++) {
-		gravestones[i].Update();
+		if (!enemies[i].IsEnabled() && gravestones[i].IsCharged()) {
+			enemies[i].Respawn(gravestones[i].GetPosition());
+		}
+		if (enemies[i].IsEnabled()) {
+			enemies[i].PassPlayerPosition(player.GetPosition());
+			enemies[i].Update();
+		}
 	}
-
 	CheckCollisions();
 }
 
@@ -132,8 +131,10 @@ void Game::Render() {
 	player.Render(window);
 	for (int i = 0; i < count; i++) {
 		gravestones[i].Render(window);
+		if (enemies[i].IsEnabled()) {
+			enemies[i].Render(window);
+		}
 	}
-
 	window->display();
 }
 //~Update

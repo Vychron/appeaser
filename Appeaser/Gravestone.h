@@ -8,6 +8,7 @@ class Gravestone : public GameObject {
 
 		int chargeValue = 1;
 		int chargeCap = 10;
+		bool isCharged = false;
 
 	public:
 
@@ -16,13 +17,12 @@ class Gravestone : public GameObject {
 		Gravestone(sf::Vector2f aPosition, sf::RectangleShape aSprite, int aChargeValue);
 		virtual ~Gravestone();
 		
+		bool IsCharged();
 		void Charge();
+		void ResetCharge();
 
 		void Init();
 		void Update();
 		void Render(sf::RenderWindow* aWindow);
-
-	protected:
-
 };
 
