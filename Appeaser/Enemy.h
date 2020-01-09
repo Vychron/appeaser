@@ -19,6 +19,7 @@ class Enemy : public Moveable {
 		Enemy(sf::Vector2f aPosition, sf::RectangleShape aSprite);
 		virtual ~Enemy();
 
+		void RecalculateVelocity();
 		void PassPlayerPosition(sf::Vector2f aPosition);
 		void Respawn(sf::Vector2f aPosition);
 		bool IsEnabled();

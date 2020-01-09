@@ -1,22 +1,9 @@
-﻿  Enemy.cpp
-D:\Projects\Appeaser\Appeaser\Enemy.cpp(34,103): warning C4244:  'argument': conversion from 'int' to 'T', possible loss of data
-D:\Projects\Appeaser\Appeaser\Enemy.cpp(34,103): warning C4244:         with
-D:\Projects\Appeaser\Appeaser\Enemy.cpp(34,103): warning C4244:         [
-D:\Projects\Appeaser\Appeaser\Enemy.cpp(34,103): warning C4244:             T=float
-D:\Projects\Appeaser\Appeaser\Enemy.cpp(34,103): warning C4244:         ]
-  Game.cpp
-D:\Projects\Appeaser\Appeaser\Enemy.cpp(34,61): warning C4244:  'argument': conversion from 'int' to 'T', possible loss of data
-D:\Projects\Appeaser\Appeaser\Enemy.cpp(34,61): warning C4244:         with
-D:\Projects\Appeaser\Appeaser\Enemy.cpp(34,61): warning C4244:         [
-D:\Projects\Appeaser\Appeaser\Enemy.cpp(34,61): warning C4244:             T=float
-D:\Projects\Appeaser\Appeaser\Enemy.cpp(34,61): warning C4244:         ]
+﻿  Game.cpp
 D:\Projects\Appeaser\Appeaser\Game.cpp(94,132): warning C4244:  'argument': conversion from 'int' to 'T', possible loss of data
 D:\Projects\Appeaser\Appeaser\Game.cpp(94,132): warning C4244:         with
 D:\Projects\Appeaser\Appeaser\Game.cpp(94,132): warning C4244:         [
 D:\Projects\Appeaser\Appeaser\Game.cpp(94,132): warning C4244:             T=float
 D:\Projects\Appeaser\Appeaser\Game.cpp(94,132): warning C4244:         ]
-  Main.cpp
-  Generating Code...
 D:\Projects\Appeaser\Appeaser\Game.cpp(94,77): warning C4244:  'argument': conversion from 'int' to 'T', possible loss of data
 D:\Projects\Appeaser\Appeaser\Game.cpp(94,77): warning C4244:         with
 D:\Projects\Appeaser\Appeaser\Game.cpp(94,77): warning C4244:         [

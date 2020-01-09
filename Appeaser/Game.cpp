@@ -106,6 +106,22 @@ void Game::CheckCollisions() {
 			player.ResetPos();
 		}
 	}
+	for (Enemy e : enemies) {
+		sf::FloatRect rect = e.GetSprite().getGlobalBounds();
+		if (sprite.intersects(rect)) {
+			std::cout << "you died";
+		}
+	}
+
+	for (int i = 0; i < count; i++) {
+		sf::FloatRect rect = enemies[i].GetSprite().getGlobalBounds();
+		for (Gravestone g : gravestones) {
+			if (g.GetSprite().getGlobalBounds().intersects(rect)) {
+				enemies[i].ResetPos();
+				enemies[i].RecalculateVelocity();
+			}
+		}
+	}
 }
 //~Functionality
 
