@@ -6,7 +6,7 @@ Moveable::Moveable() : GameObject() {
 
 }
 
-Moveable::Moveable(sf::Vector2f aPosition, sf::RectangleShape aSprite) : GameObject(aPosition, aSprite) {
+Moveable::Moveable(sf::Vector2f aPosition, sf::Sprite aSprite) : GameObject(aPosition, aSprite) {
 
 }
 
@@ -43,12 +43,12 @@ void Moveable::Move() {
 	}
 	//Updating position
 	position += (NumberOperations::NormalizeVector2f(movement) * moveSpeed);
-	sprite.setPosition(sf::Vector2f(position.x - (sprite.getSize().x / 2.f), position.y - (sprite.getSize().y / 2.f)));
+	sprite.setPosition(sf::Vector2f(position.x - (16.f), position.y - (16.f)));
 }
 
 void Moveable::ResetPos() {
 	position = prevPos;
-	sprite.setPosition(sf::Vector2f(position.x - (sprite.getSize().x / 2.f), position.y - (sprite.getSize().y / 2.f)));
+	sprite.setPosition(sf::Vector2f(position.x - (16.f), position.y - (16.f)));
 }
 //~Functionality
 

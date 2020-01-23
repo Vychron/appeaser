@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "Gravestone.h"
 #include "Enemy.h"
+#include "Wave.h";
 
 class Game {
 
@@ -12,10 +13,11 @@ class Game {
 		sf::RenderWindow* window;
 		sf::VideoMode videoMode;
 		sf::Event evt;
-		int count = 1;
+		int count = 10;
 
-		Gravestone gravestones[1];
-		Enemy enemies[1];
+		Player player;
+		Gravestone gravestones[10];
+		Enemy enemies[10];
 
 		void GenerateGravestones();
 		void CheckCollisions();
@@ -37,6 +39,6 @@ class Game {
 
 	protected:
 
-		Player player;
+		//Wave wave;
 };
 

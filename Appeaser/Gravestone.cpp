@@ -5,13 +5,12 @@ Gravestone::Gravestone() : GameObject() {
 
 }
 
-Gravestone::Gravestone(sf::Vector2f aPosition, sf::RectangleShape aSprite) : GameObject(aPosition, aSprite) {
+Gravestone::Gravestone(sf::Vector2f aPosition, sf::Sprite aSprite) : GameObject(aPosition, aSprite) {
 
 }
 
-Gravestone::Gravestone(sf::Vector2f aPosition, sf::RectangleShape aSprite, int aChargeValue) : GameObject(aPosition, aSprite) {
+Gravestone::Gravestone(sf::Vector2f aPosition, sf::Sprite aSprite, int aChargeValue) : GameObject(aPosition, aSprite) {
 	chargeValue = aChargeValue;
-	sprite.setFillColor(sf::Color((255 / chargeCap) * chargeValue, (255 / chargeCap) * chargeValue, 0, 255));
 }
 
 Gravestone::~Gravestone() {
@@ -21,7 +20,9 @@ Gravestone::~Gravestone() {
 
 //Initialization
 void Gravestone::Init() {
-
+	texture.loadFromFile("Images/Gravestone.png");
+	sprite.setTexture(texture);
+	sprite.setColor(sf::Color((255 / chargeCap) * chargeValue, (255 / chargeCap) * chargeValue, 0, 255));
 }
 //~Initialization
 
@@ -38,7 +39,7 @@ void Gravestone::Charge() {
 	}
 	isCharged = false;
 	std::cout << "The wave of energy flows through a gravestone... \n";
-	sprite.setFillColor(sf::Color((255 / chargeCap) * chargeValue, (255 / chargeCap) * chargeValue, 0, 255));
+	sprite.setColor(sf::Color((255 / chargeCap) * chargeValue, (255 / chargeCap) * chargeValue, 0, 255));
 }
 
 bool Gravestone::IsCharged() {

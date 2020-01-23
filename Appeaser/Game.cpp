@@ -3,11 +3,12 @@
 
 //Construction
 Game::Game() {
-	player = Player(sf::Vector2f(100.f, 100.f), sf::RectangleShape(sf::Vector2f(32.f, 32.f)));
+	player = Player(sf::Vector2f(100.f, 100.f), sf::Sprite());
 	InitVars();
 	InitWindow();
 	GenerateGravestones();
 	InitObjects();
+	//wave = Wave();
 }
 
 Game::~Game() {
@@ -29,8 +30,8 @@ void Game::InitWindow() {
 
 void Game::InitObjects() {
 	player.Init();
-	for (Gravestone g : gravestones) {
-		g.Init();
+	for (int i = 0; i < count; i++) {
+		gravestones[i].Init();
 	}
 }
 //~Initialization
@@ -91,34 +92,39 @@ void Game::Poll() {
 
 void Game::GenerateGravestones() {
 	for (int i = 0; i < count; i++) {
-		gravestones[i] = Gravestone(sf::Vector2f(NumberOperations::GetRandomNumber(0, videoMode.width), NumberOperations::GetRandomNumber(0, videoMode.height)), sf::RectangleShape(sf::Vector2f(32.f, 32.f)), NumberOperations::GetRandomNumber(0, 8));
-		enemies[i] = Enemy(sf::Vector2f(-32.f, -32.f), sf::RectangleShape(sf::Vector2f(32.f, 32.f)));
+		gravestones[i] = Gravestone(sf::Vector2f(NumberOperations::GetRandomNumber(0, videoMode.width), NumberOperations::GetRandomNumber(0, videoMode.height)), sf::Sprite(), NumberOperations::GetRandomNumber(0, 8));
+		enemies[i] = Enemy(sf::Vector2f(-32.f, -32.f), sf::Sprite());
 		enemies[i].GetSprite().setScale(sf::Vector2f(0.f, 0.f));
 	}
 }
 
 void Game::CheckCollisions() {
-	sf::FloatRect sprite = player.GetSprite().getGlobalBounds();
+	sf::Sprite playerSprite = player.GetSprite();
 	//checking graveStones
 	for (Gravestone g : gravestones) {
-		sf::FloatRect rect = g.GetSprite().getGlobalBounds();
-		if (sprite.intersects(rect)) {
-			player.ResetPos();
+		sf::Sprite rect = g.GetSprite();
+		if (playerSprite.getGlobalBounds().intersects(rect.getGlobalBounds())) {
+			if (Collision::PixelPerfectTest(g.GetSprite(), player.GetSprite())) {
+				player.ResetPos();
+			}
 		}
 	}
 	for (Enemy e : enemies) {
-		sf::FloatRect rect = e.GetSprite().getGlobalBounds();
-		if (sprite.intersects(rect)) {
-			std::cout << "you died";
+		sf::Sprite rect = e.GetSprite();
+		if (playerSprite.getGlobalBounds().intersects(rect.getGlobalBounds())) {
+			if (Collision::PixelPerfectTest(e.GetSprite(), player.GetSprite())) {
+				std::cout << "you died...\n";
+			}
 		}
 	}
-
 	for (int i = 0; i < count; i++) {
-		sf::FloatRect rect = enemies[i].GetSprite().getGlobalBounds();
+		sf::Sprite rect = enemies[i].GetSprite();
 		for (Gravestone g : gravestones) {
-			if (g.GetSprite().getGlobalBounds().intersects(rect)) {
-				enemies[i].ResetPos();
-				enemies[i].RecalculateVelocity();
+			if (g.GetSprite().getGlobalBounds().intersects(rect.getGlobalBounds())) {
+				if (Collision::PixelPerfectTest(g.GetSprite(), rect)) {
+					enemies[i].ResetPos();
+					enemies[i].RecalculateVelocity();
+				}
 			}
 		}
 	}
@@ -151,6 +157,8 @@ void Game::Render() {
 			enemies[i].Render(window);
 		}
 	}
+	//wave.Render(window);
+
 	window->display();
 }
 //~Update

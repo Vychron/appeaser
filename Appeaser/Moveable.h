@@ -7,7 +7,7 @@ class Moveable : public GameObject {
 	public:
 
 		Moveable();
-		Moveable(sf::Vector2f aPosition, sf::RectangleShape aSprite);
+		Moveable(sf::Vector2f aPosition, sf::Sprite aSprite);
 		virtual ~Moveable();
 
 		void ResetPos();

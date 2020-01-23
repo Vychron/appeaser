@@ -2,21 +2,20 @@
 
 //Construction
 GameObject::GameObject() {
-	sprite = sf::RectangleShape(sf::Vector2f(32.f, 32.f));
+	sprite = sf::Sprite();
 	position = sf::Vector2f(0.f, 0.f);
 }
 
-GameObject::GameObject(sf::Vector2f aPosition, sf::RectangleShape aSprite) {
+GameObject::GameObject(sf::Vector2f aPosition, sf::Sprite aSprite) {
 	position = aPosition;
 	sprite = aSprite;
-	sprite.setPosition(sf::Vector2f(position.x - (sprite.getSize().x / 2.f), position.y - (sprite.getSize().y / 2.f)));
+	sprite.setPosition(sf::Vector2f(position.x - (16.f), position.y - (16.f)));
 }
 
 GameObject::~GameObject() {
 
 }
 //~Construction
-
 
 //Initialization
 //~Initialization
@@ -26,7 +25,7 @@ sf::Vector2f GameObject::GetPosition() {
 	return position;
 }
 
-sf::RectangleShape GameObject::GetSprite() {
+sf::Sprite GameObject::GetSprite() {
 	return sprite;
 }
 //~Functionality

@@ -13,8 +13,8 @@ class Gravestone : public GameObject {
 	public:
 
 		Gravestone();
-		Gravestone(sf::Vector2f aPosition, sf::RectangleShape aSprite);
-		Gravestone(sf::Vector2f aPosition, sf::RectangleShape aSprite, int aChargeValue);
+		Gravestone(sf::Vector2f aPosition, sf::Sprite aSprite);
+		Gravestone(sf::Vector2f aPosition, sf::Sprite aSprite, int aChargeValue);
 		virtual ~Gravestone();
 		
 		bool IsCharged();
