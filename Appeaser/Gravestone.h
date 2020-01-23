@@ -9,20 +9,23 @@ class Gravestone : public GameObject {
 		int chargeValue = 1;
 		int chargeCap = 10;
 		bool isCharged = false;
+		bool alreadyCharging;
 
 	public:
 
 		Gravestone();
-		Gravestone(sf::Vector2f aPosition, sf::Sprite aSprite);
-		Gravestone(sf::Vector2f aPosition, sf::Sprite aSprite, int aChargeValue);
+		Gravestone(sf::Vector2f, sf::Sprite);
+		Gravestone(sf::Vector2f, sf::Sprite, int);
 		virtual ~Gravestone();
 		
 		bool IsCharged();
 		void Charge();
 		void ResetCharge();
+		bool AlreadyCharging();
+		void EnableCharge();
 
 		void Init();
 		void Update();
-		void Render(sf::RenderWindow* aWindow);
+		void Render(sf::RenderWindow*);
 };
 

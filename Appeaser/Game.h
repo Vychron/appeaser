@@ -39,6 +39,6 @@ class Game {
 
 	protected:
 
-		//Wave wave;
+		Wave wave;
 };
 

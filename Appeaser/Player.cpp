@@ -5,7 +5,7 @@ Player::Player() : Moveable() {
 
 }
 
-Player::Player(sf::Vector2f aPosition, sf::Sprite aSprite) : Moveable (aPosition, aSprite) {
+Player::Player(sf::Vector2f aPosition, sf::Sprite aSprite) : Moveable(aPosition, aSprite) {
 
 }
 
