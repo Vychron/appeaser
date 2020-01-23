@@ -148,7 +148,6 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Gravestone.h" />
-    <ClInclude Include="Main.h" />
     <ClInclude Include="Moveable.h" />
     <ClInclude Include="NumberOperations.h" />
     <ClInclude Include="Player.h" />

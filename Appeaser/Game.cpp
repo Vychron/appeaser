@@ -3,12 +3,12 @@
 
 //Construction
 Game::Game() {
+	wave = Wave();
 	player = Player(sf::Vector2f(100.f, 100.f), sf::Sprite());
 	InitVars();
 	InitWindow();
 	GenerateGravestones();
 	InitObjects();
-	//wave = Wave();
 }
 
 Game::~Game() {
@@ -25,10 +25,11 @@ void Game::InitWindow() {
 	videoMode.width = 800;
 	videoMode.height = 600;
 	window = new sf::RenderWindow(videoMode, "Appeaser", sf::Style::Titlebar | sf::Style::Close);
-	window->setFramerateLimit(30);
+	window->setFramerateLimit(60);
 }
 
 void Game::InitObjects() {
+	wave.Init();
 	player.Init();
 	for (int i = 0; i < count; i++) {
 		gravestones[i].Init();
@@ -65,12 +66,6 @@ void Game::Poll() {
 				if (evt.key.code == sf::Keyboard::D) {
 					player.SetRightDirection(true);
 				}
-				
-				if (evt.key.code == sf::Keyboard::Space) {
-					for (int i = 0; i < count; i++) {
-						gravestones[i].Charge();
-					}
-				}
 				break;
 			case (sf::Event::KeyReleased):
 				if (evt.key.code == sf::Keyboard::W) {
@@ -100,12 +95,24 @@ void Game::GenerateGravestones() {
 
 void Game::CheckCollisions() {
 	sf::Sprite playerSprite = player.GetSprite();
-	//checking graveStones
-	for (Gravestone g : gravestones) {
-		sf::Sprite rect = g.GetSprite();
+	for (int i = 0; i < count; i++) {
+		sf::Sprite rect = gravestones[i].GetSprite();
 		if (playerSprite.getGlobalBounds().intersects(rect.getGlobalBounds())) {
-			if (Collision::PixelPerfectTest(g.GetSprite(), player.GetSprite())) {
+			if (Collision::PixelPerfectTest(rect, playerSprite)) {
 				player.ResetPos();
+			}
+		}
+		sf::Sprite waveSprite = wave.GetSprite();
+		if (waveSprite.getGlobalBounds().intersects(rect.getGlobalBounds())) {
+			if (Collision::PixelPerfectTest(rect, waveSprite)) {
+				if (!gravestones[i].AlreadyCharging()) {
+					gravestones[i].Charge();
+				}
+			}
+		}
+		else {
+			if (gravestones[i].AlreadyCharging()) {
+				gravestones[i].EnableCharge();
 			}
 		}
 	}
@@ -134,6 +141,7 @@ void Game::CheckCollisions() {
 //Update
 void Game::Update() {
 	Poll();
+	wave.Update();
 	player.Update();
 	for (int i = 0; i < count; i++) {
 		if (!enemies[i].IsEnabled() && gravestones[i].IsCharged()) {
@@ -150,6 +158,7 @@ void Game::Update() {
 void Game::Render() {
 	window->clear(sf::Color(50, 200, 100));
 
+	wave.Render(window);
 	player.Render(window);
 	for (int i = 0; i < count; i++) {
 		gravestones[i].Render(window);
@@ -157,7 +166,6 @@ void Game::Render() {
 			enemies[i].Render(window);
 		}
 	}
-	//wave.Render(window);
 
 	window->display();
 }

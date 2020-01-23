@@ -28,6 +28,7 @@ void Gravestone::Init() {
 
 //Functionality
 void Gravestone::Charge() {
+	alreadyCharging = true;
 	if (isCharged) {
 		return;
 	}
@@ -48,6 +49,14 @@ bool Gravestone::IsCharged() {
 
 void Gravestone::ResetCharge() {
 	chargeValue = 1;
+}
+
+bool Gravestone::AlreadyCharging() {
+	return alreadyCharging;
+}
+
+void Gravestone::EnableCharge() {
+	alreadyCharging = false;
 }
 //Functionality
 

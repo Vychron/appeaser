@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameObject.h"
+#include "NumberOperations.h"
 
 class Moveable : public GameObject {
 
@@ -20,6 +21,6 @@ class Moveable : public GameObject {
 		float moveSpeed = 0;
 		sf::Vector2f velocity;
 		sf::Vector2f prevPos;
-		void Move();
+		virtual void Move();
 };
 

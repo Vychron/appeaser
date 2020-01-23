@@ -1,5 +1,4 @@
 #include "Moveable.h"
-#include "NumberOperations.h"
 
 //Construction
 Moveable::Moveable() : GameObject() {
@@ -43,12 +42,12 @@ void Moveable::Move() {
 	}
 	//Updating position
 	position += (NumberOperations::NormalizeVector2f(movement) * moveSpeed);
-	sprite.setPosition(sf::Vector2f(position.x - (16.f), position.y - (16.f)));
+	sprite.setPosition(sf::Vector2f(position.x - (texture.getSize().x / 2.f), position.y - (texture.getSize().y / 2.f)));
 }
 
 void Moveable::ResetPos() {
 	position = prevPos;
-	sprite.setPosition(sf::Vector2f(position.x - (16.f), position.y - (16.f)));
+	sprite.setPosition(sf::Vector2f(position.x - (texture.getSize().x / 2.f), position.y - (texture.getSize().y / 2.f)));
 }
 //~Functionality
 

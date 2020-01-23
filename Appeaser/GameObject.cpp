@@ -9,7 +9,7 @@ GameObject::GameObject() {
 GameObject::GameObject(sf::Vector2f aPosition, sf::Sprite aSprite) {
 	position = aPosition;
 	sprite = aSprite;
-	sprite.setPosition(sf::Vector2f(position.x - (16.f), position.y - (16.f)));
+	sprite.setPosition(sf::Vector2f(position.x - (texture.getSize().x /2.f), position.y - (texture.getSize().y / 2.f)));
 }
 
 GameObject::~GameObject() {
