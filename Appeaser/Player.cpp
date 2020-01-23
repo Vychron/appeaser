@@ -5,7 +5,7 @@ Player::Player() : Moveable() {
 
 }
 
-Player::Player(sf::Vector2f aPosition, sf::RectangleShape aSprite) : Moveable (aPosition, aSprite) {
+Player::Player(sf::Vector2f aPosition, sf::Sprite aSprite) : Moveable (aPosition, aSprite) {
 
 }
 
@@ -16,8 +16,9 @@ Player::~Player() {
 
 //Initialization
 void Player::Init() {
-	moveSpeed = 2.f;
-	sprite.setFillColor(sf::Color::Blue);
+	moveSpeed = 4.f;
+	texture.loadFromFile("Images/Player-Front.png");
+	sprite.setTexture(texture);
 }
 //~Initialization
 

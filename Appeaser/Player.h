@@ -17,7 +17,7 @@ class Player : public Moveable {
 	public:
 	
 		Player();
-		Player(sf::Vector2f aPosition, sf::RectangleShape aSprite);
+		Player(sf::Vector2f aPosition, sf::Sprite aSprite);
 		virtual ~Player();
 	
 		void SetUpDirection(bool active);

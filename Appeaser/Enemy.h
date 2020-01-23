@@ -16,7 +16,7 @@ class Enemy : public Moveable {
 		sf::Vector2f playerPosition = sf::Vector2f(0.f, 0.f);
 
 		Enemy();
-		Enemy(sf::Vector2f aPosition, sf::RectangleShape aSprite);
+		Enemy(sf::Vector2f aPosition, sf::Sprite aSprite);
 		virtual ~Enemy();
 
 		void RecalculateVelocity();

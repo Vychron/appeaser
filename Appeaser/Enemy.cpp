@@ -6,7 +6,7 @@ Enemy::Enemy() : Moveable() {
 
 }
 
-Enemy::Enemy(sf::Vector2f aPosition, sf::RectangleShape aSprite) : Moveable(aPosition, aSprite) {
+Enemy::Enemy(sf::Vector2f aPosition, sf::Sprite aSprite) : Moveable(aPosition, aSprite) {
 
 }
 
@@ -17,8 +17,10 @@ Enemy::~Enemy() {
 
 //Initialization
 void Enemy::Init() {
-	moveSpeed = 2.5f;
-	sprite.setFillColor(sf::Color::Red);
+	moveSpeed = 5.f;
+	texture.loadFromFile("Images/Player-Front.png");
+	sprite.setTexture(texture);
+	sprite.setColor(sf::Color::Red);
 }
 //~Initialization
 
@@ -49,7 +51,7 @@ void Enemy::Respawn(sf::Vector2f aPosition) {
 	enabled = true;
 	position = aPosition + sf::Vector2f(0.f, 32.f);
 	sprite.setScale(sf::Vector2f(1.f, 1.f));
-	sprite.setPosition(sf::Vector2f(position.x - (sprite.getSize().x / 2), position.y - (sprite.getSize().y / 2)));
+	sprite.setPosition(sf::Vector2f(position.x - (16.f), position.y - (16.f)));
 	Init();
 }
 
