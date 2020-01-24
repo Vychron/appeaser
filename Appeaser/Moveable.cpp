@@ -1,6 +1,6 @@
 #include "Moveable.h"
 
-//Construction
+#pragma region Construction
 Moveable::Moveable() : GameObject() {
 
 }
@@ -12,12 +12,12 @@ Moveable::Moveable(sf::Vector2f aPosition, sf::Sprite aSprite) : GameObject(aPos
 Moveable::~Moveable() {
 
 }
-//~Construction
+#pragma endregion
 
-//Initialization
-//~Initialization
+#pragma region Initialization
+#pragma endregion
 
-//Functionality
+#pragma region Functionality
 void Moveable::Move() {
 	prevPos = position;
 	sf::Vector2f movement = velocity;
@@ -49,9 +49,9 @@ void Moveable::ResetPos() {
 	position = prevPos;
 	sprite.setPosition(sf::Vector2f(position.x - (texture.getSize().x / 2.f), position.y - (texture.getSize().y / 2.f)));
 }
-//~Functionality
+#pragma endregion
 
-//Update
+#pragma region Update
 void Moveable::Update() {
 	Move();
 }
@@ -59,4 +59,4 @@ void Moveable::Update() {
 void Moveable::Render(sf::RenderWindow* aWindow) {
 	GameObject::Render(aWindow);
 }
-//~Update
+#pragma endregion

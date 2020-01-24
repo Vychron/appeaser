@@ -1,9 +1,9 @@
 #include "Game.h"
 #include "NumberOperations.h"
 
-//Construction
+#pragma region Construction
 Game::Game() {
-	wave = Wave();
+	wave = new Wave();
 	player = Player(sf::Vector2f(100.f, 100.f), sf::Sprite());
 	InitVars();
 	InitWindow();
@@ -13,10 +13,11 @@ Game::Game() {
 
 Game::~Game() {
 	delete window;
+	delete wave;
 }
-//~Construction
+#pragma endregion
 
-//Initialization
+#pragma region Initialization
 void Game::InitVars() {
 	window = nullptr;
 }
@@ -25,19 +26,19 @@ void Game::InitWindow() {
 	videoMode.width = 800;
 	videoMode.height = 600;
 	window = new sf::RenderWindow(videoMode, "Appeaser", sf::Style::Titlebar | sf::Style::Close);
-	window->setFramerateLimit(60);
+	window->setFramerateLimit(frameRate);
 }
 
 void Game::InitObjects() {
-	wave.Init();
+	wave->Init();
 	player.Init();
-	for (int i = 0; i < count; i++) {
+	for (int i = 0; i < graveCount; i++) {
 		gravestones[i].Init();
 	}
 }
-//~Initialization
+#pragma endregion
 
-//Functionality
+#pragma region Functionality
 const bool Game::running() const {
 	return window->isOpen();
 }
@@ -86,7 +87,7 @@ void Game::Poll() {
 }
 
 void Game::GenerateGravestones() {
-	for (int i = 0; i < count; i++) {
+	for (int i = 0; i < graveCount; i++) {
 		gravestones[i] = Gravestone(sf::Vector2f(NumberOperations::GetRandomNumber(0, videoMode.width), NumberOperations::GetRandomNumber(0, videoMode.height)), sf::Sprite(), NumberOperations::GetRandomNumber(0, 8));
 		enemies[i] = Enemy(sf::Vector2f(-32.f, -32.f), sf::Sprite());
 		enemies[i].GetSprite().setScale(sf::Vector2f(0.f, 0.f));
@@ -95,14 +96,14 @@ void Game::GenerateGravestones() {
 
 void Game::CheckCollisions() {
 	sf::Sprite playerSprite = player.GetSprite();
-	for (int i = 0; i < count; i++) {
+	for (int i = 0; i < graveCount; i++) {
 		sf::Sprite rect = gravestones[i].GetSprite();
 		if (playerSprite.getGlobalBounds().intersects(rect.getGlobalBounds())) {
-			if (Collision::PixelPerfectTest(rect, playerSprite)) {
+			if (Collision::PixelPerfectTest(rect, playerSprite, 255.f)) {
 				player.ResetPos();
 			}
 		}
-		sf::Sprite waveSprite = wave.GetSprite();
+		sf::Sprite waveSprite = wave->GetSprite();
 		if (waveSprite.getGlobalBounds().intersects(rect.getGlobalBounds())) {
 			if (Collision::PixelPerfectTest(rect, waveSprite)) {
 				if (!gravestones[i].AlreadyCharging()) {
@@ -110,21 +111,16 @@ void Game::CheckCollisions() {
 				}
 			}
 		}
-		else {
-			if (gravestones[i].AlreadyCharging()) {
-				gravestones[i].EnableCharge();
-			}
-		}
 	}
-	for (Enemy e : enemies) {
-		sf::Sprite rect = e.GetSprite();
+	for (int i = 0; i < graveCount; i++) {
+		sf::Sprite rect = enemies[i].GetSprite();
 		if (playerSprite.getGlobalBounds().intersects(rect.getGlobalBounds())) {
-			if (Collision::PixelPerfectTest(e.GetSprite(), player.GetSprite())) {
+			if (Collision::PixelPerfectTest(enemies[i].GetSprite(), player.GetSprite())) {
 				std::cout << "you died...\n";
 			}
 		}
 	}
-	for (int i = 0; i < count; i++) {
+	for (int i = 0; i < graveCount; i++) {
 		sf::Sprite rect = enemies[i].GetSprite();
 		for (Gravestone g : gravestones) {
 			if (g.GetSprite().getGlobalBounds().intersects(rect.getGlobalBounds())) {
@@ -136,37 +132,53 @@ void Game::CheckCollisions() {
 		}
 	}
 }
-//~Functionality
 
-//Update
-void Game::Update() {
-	Poll();
-	wave.Update();
-	player.Update();
-	for (int i = 0; i < count; i++) {
-		if (!enemies[i].IsEnabled() && gravestones[i].IsCharged()) {
-			enemies[i].Respawn(gravestones[i].GetPosition());
-		}
-		if (enemies[i].IsEnabled()) {
-			enemies[i].PassPlayerPosition(player.GetPosition());
-			enemies[i].Update();
+void Game::UpdateTimer() {
+	currentTime++;
+	if (currentTime >= timer) {
+		currentTime = 0;
+		delete wave;
+		wave = new Wave();
+		wave->Init();
+		timer = NumberOperations::GetRandomNumber(10.f, 20.f) * frameRate;
+		std::cout << "A wave of energy has appeared...\n";
+		for (int i = 0; i < graveCount; i++) {
+			gravestones[i].EnableCharge();
 		}
 	}
-	CheckCollisions();
 }
+#pragma endregion
 
-void Game::Render() {
-	window->clear(sf::Color(50, 200, 100));
-
-	wave.Render(window);
-	player.Render(window);
-	for (int i = 0; i < count; i++) {
-		gravestones[i].Render(window);
-		if (enemies[i].IsEnabled()) {
-			enemies[i].Render(window);
+#pragma region Update
+	void Game::Update() {
+		Poll();
+		UpdateTimer();
+		wave->Update();
+		player.Update();
+		for (int i = 0; i < graveCount; i++) {
+			if (!enemies[i].IsEnabled() && gravestones[i].IsCharged()) {
+				enemies[i].Respawn(gravestones[i].GetPosition());
+			}
+			if (enemies[i].IsEnabled()) {
+				enemies[i].PassPlayerPosition(player.GetPosition());
+				enemies[i].Update();
+			}
 		}
+		CheckCollisions();
 	}
 
-	window->display();
-}
-//~Update
+	void Game::Render() {
+		window->clear(sf::Color(50, 200, 100));
+
+		wave->Render(window);
+		player.Render(window);
+		for (int i = 0; i < graveCount; i++) {
+			gravestones[i].Render(window);
+			if (enemies[i].IsEnabled()) {
+				enemies[i].Render(window);
+			}
+		}
+
+		window->display();
+	}
+#pragma endregion

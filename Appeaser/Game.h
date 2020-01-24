@@ -10,10 +10,14 @@ class Game {
 
 	private:
 
+		int frameRate = 12;
+		float timer = 0;
+		float currentTime = 0;
+
 		sf::RenderWindow* window;
 		sf::VideoMode videoMode;
 		sf::Event evt;
-		int count = 10;
+		int graveCount = 10;
 
 		Player player;
 		Gravestone gravestones[10];
@@ -21,6 +25,7 @@ class Game {
 
 		void GenerateGravestones();
 		void CheckCollisions();
+		void UpdateTimer();
 
 		void InitVars();
 		void InitWindow();
@@ -39,6 +44,7 @@ class Game {
 
 	protected:
 
-		Wave wave;
+		Wave* wave;
+
 };
 

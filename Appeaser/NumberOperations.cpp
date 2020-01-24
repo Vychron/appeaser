@@ -1,6 +1,7 @@
 #include "NumberOperations.h"
 #include <random>
 
+#pragma region Functionality
 int NumberOperations::GetRandomNumber(int aMin, int aMax) {
 	std::random_device rd;
 	std::mt19937 eng(rd());
@@ -17,3 +18,4 @@ sf::Vector2f NumberOperations::NormalizeVector2f(sf::Vector2f aVector2) {
 		return aVector2;
 	}
 }
+#pragma endregion

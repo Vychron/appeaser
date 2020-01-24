@@ -1,7 +1,7 @@
 #include "Enemy.h"
 #include "NumberOperations.h"
 
-//Construction
+#pragma region Construction
 Enemy::Enemy() : Moveable() {
 
 }
@@ -13,18 +13,18 @@ Enemy::Enemy(sf::Vector2f aPosition, sf::Sprite aSprite) : Moveable(aPosition, a
 Enemy::~Enemy() {
 
 }
-//~Construction
+#pragma endregion
 
-//Initialization
+#pragma region Initialization
 void Enemy::Init() {
 	moveSpeed = 5.f;
 	texture.loadFromFile("Images/Player-Front.png");
 	sprite.setTexture(texture);
 	sprite.setColor(sf::Color::Red);
 }
-//~Initialization
+#pragma endregion
 
-//Functionality
+#pragma region Functionality
 void Enemy::UpdateVelocity() {
 	stepCount++;
 	if (stepCount >= stepCountMax) {
@@ -49,7 +49,7 @@ void Enemy::PassPlayerPosition(sf::Vector2f aPosition) {
 
 void Enemy::Respawn(sf::Vector2f aPosition) {
 	enabled = true;
-	position = aPosition + sf::Vector2f(0.f, 32.f);
+	position = aPosition + sf::Vector2f(16.f, 48.f);
 	sprite.setScale(sf::Vector2f(1.f, 1.f));
 	sprite.setPosition(sf::Vector2f(position.x - (16.f), position.y - (16.f)));
 	Init();
@@ -62,9 +62,9 @@ bool Enemy::IsEnabled() {
 void Enemy::Enable() {
 	enabled = true;
 }
-//~Functionality
+#pragma endregion
 
-//Update
+#pragma region Update
 void Enemy::Update() {
 	UpdateVelocity();
 	Moveable::Update();
@@ -73,4 +73,4 @@ void Enemy::Update() {
 void Enemy::Render(sf::RenderWindow* aWindow) {
 	Moveable::Render(aWindow);
 }
-//~Update
+#pragma endregion
