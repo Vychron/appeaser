@@ -1,6 +1,6 @@
 #include "GameObject.h"
 
-//Construction
+#pragma region Construction
 GameObject::GameObject() {
 	sprite = sf::Sprite();
 	position = sf::Vector2f(0.f, 0.f);
@@ -15,12 +15,12 @@ GameObject::GameObject(sf::Vector2f aPosition, sf::Sprite aSprite) {
 GameObject::~GameObject() {
 
 }
-//~Construction
+#pragma endregion
 
-//Initialization
-//~Initialization
+#pragma region Initialization
+#pragma endregion
 
-//Functionality
+#pragma region Functionality
 sf::Vector2f GameObject::GetPosition() {
 	return position;
 }
@@ -28,10 +28,10 @@ sf::Vector2f GameObject::GetPosition() {
 sf::Sprite GameObject::GetSprite() {
 	return sprite;
 }
-//~Functionality
+#pragma endregion
 
-//Update
+#pragma region Update
 void GameObject::Render(sf::RenderWindow* aWindow) {
 	aWindow->draw(sprite);
 }
-//~Update
+#pragma endregion

@@ -1,6 +1,6 @@
 #include "Gravestone.h"
 
-//Construction
+#pragma region Construction
 Gravestone::Gravestone() : GameObject() {
 
 }
@@ -16,17 +16,17 @@ Gravestone::Gravestone(sf::Vector2f aPosition, sf::Sprite aSprite, int aChargeVa
 Gravestone::~Gravestone() {
 
 }
-//~Construction
+#pragma endregion
 
-//Initialization
+#pragma region Initialization
 void Gravestone::Init() {
 	texture.loadFromFile("Images/Gravestone.png");
 	sprite.setTexture(texture);
 	sprite.setColor(sf::Color((255 / chargeCap) * chargeValue, (255 / chargeCap) * chargeValue, 0, 255));
 }
-//~Initialization
+#pragma endregion
 
-//Functionality
+#pragma region Functionality
 void Gravestone::Charge() {
 	alreadyCharging = true;
 	if (isCharged) {
@@ -58,9 +58,9 @@ bool Gravestone::AlreadyCharging() {
 void Gravestone::EnableCharge() {
 	alreadyCharging = false;
 }
-//Functionality
+#pragma endregion
 
-//Update
+#pragma region Update
 void Gravestone::Update() {
 	
 }
@@ -68,4 +68,4 @@ void Gravestone::Update() {
 void Gravestone::Render(sf::RenderWindow* aWindow) {
 	GameObject::Render(aWindow);
 }
-//~Update
+#pragma endregion

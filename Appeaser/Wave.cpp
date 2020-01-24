@@ -1,6 +1,6 @@
 #include "Wave.h"
 
-//Construction
+#pragma region Construction
 Wave::Wave() : Moveable() {
 
 }
@@ -13,20 +13,20 @@ Wave::Wave(sf::Vector2f aPosition, sf::Sprite aSprite) : Moveable(aPosition, aSp
 Wave::~Wave() {
 
 }
-//~Construction
+#pragma endregion
 
-//Initialization
+#pragma region Initialization
 void Wave::Init() {
-	moveSpeed = 20.f;
+	moveSpeed = 12.f;
 	SetRandomDirecion();
 }
-//~Initialization
+#pragma endregion
 
-//Functionality
+#pragma region Functionality
 void Wave::SetRandomDirecion() {
+	velocity = sf::Vector2f(0.f, 0.f);
 	while (velocity == sf::Vector2f(0.f, 0.f)) {
 		velocity = sf::Vector2f(NumberOperations::GetRandomNumber(-2.f, 2.f), NumberOperations::GetRandomNumber(-2.f, 2.f));
-		std::cout << velocity.x << ", " << velocity.y << "\n";
 	}
 	upDirection = downDirection = leftDirection = rightDirection = false;
 	if (velocity.x > 0) {
@@ -100,9 +100,9 @@ void Wave::Flow() {
 	position += (NumberOperations::NormalizeVector2f(velocity) * moveSpeed);
 	sprite.setPosition(sf::Vector2f(position.x - (texture.getSize().x / 2.f), position.y - (texture.getSize().y / 2.f)));
 }
-//~Functionality
+#pragma endregion
 
-//Update
+#pragma region Update
 void Wave::Update() {
 	Flow();
 }
@@ -110,4 +110,4 @@ void Wave::Update() {
 void Wave::Render(sf::RenderWindow* aWindow) {
 	Moveable::Render(aWindow);
 }
-//~Update
+#pragma endregion

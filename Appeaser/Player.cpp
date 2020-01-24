@@ -1,6 +1,6 @@
 #include "Player.h"
 
-//Construction
+#pragma region Construction
 Player::Player() : Moveable() {
 
 }
@@ -12,17 +12,17 @@ Player::Player(sf::Vector2f aPosition, sf::Sprite aSprite) : Moveable(aPosition,
 Player::~Player() {
 
 }
-//~Construction
+#pragma endregion
 
-//Initialization
+#pragma region Initialization
 void Player::Init() {
 	moveSpeed = 4.f;
 	texture.loadFromFile("Images/Player-Front.png");
 	sprite.setTexture(texture);
 }
-//~Initialization
+#pragma endregion
 
-//Functionality
+#pragma region Functionality
 void Player::UpdateVelocity() {
 	sf::Vector2f vel = velocity;
 
@@ -81,9 +81,9 @@ void Player::SetLeftDirection(bool active) {
 void Player::SetRightDirection(bool active) {
 	rightDirection = active;
 }
-//~Functionality
+#pragma endregion
 
-//Update
+#pragma region Update
 void Player::Update() {
 	UpdateVelocity();
 	Moveable::Update();
@@ -92,4 +92,4 @@ void Player::Update() {
 void Player::Render(sf::RenderWindow* aWindow) {
 	Moveable::Render(aWindow);
 }
-//~Update
+#pragma endregion
