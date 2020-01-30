@@ -20,6 +20,16 @@ Made with: Microsoft Visual Studio 2019
 
 Used libraries: SFML 2.5.1
 
+## References
+
+[SFML](https://www.sfml-dev.org/)
+
+[SFML Pixel Perfect Collision](https://github.com/SFML/SFML/wiki/Source:-Simple-Collision-Detection-for-SFML-2#simple-collision-detection)
+
+[Tutorial on setting up SFML](https://www.youtube.com/watch?v=Z6alClFOGoM&list=PLRtjMdoYXLf776y4K432eL_qPw4na_py3&index=2)
+
+[Tutorial on events in SFML](https://www.youtube.com/watch?v=R1vTc3v6dwo&list=PLRtjMdoYXLf776y4K432eL_qPw4na_py3&index=3)
+
 ## Under Construction
 
 The game is still under construction, if you happened to come across this repository and are wondering about the progress of the game, feel free to take a look at the [Trello board](https://trello.com/b/cqnfjlR8/appeaser).
