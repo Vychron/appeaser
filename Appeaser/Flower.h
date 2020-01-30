@@ -3,7 +3,7 @@
 #include "GameObject.h"
 
 using namespace sf;
-
+// the most important item the player can use, it's the only thing that can make the player progress
 class Flower : public GameObject {
 
 	private:

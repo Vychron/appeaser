@@ -47,7 +47,7 @@ void Gravestone::Charge() {
 bool Gravestone::IsCharged() {
 	return isCharged;
 }
-
+// make it able to spawn a new enemy
 void Gravestone::ResetCharge() {
 	chargeValue = 1;
 	isCharged = false;

@@ -1,15 +1,15 @@
 ﻿  Game.cpp
-D:\Projects\Appeaser\Appeaser\Game.cpp(111,128): warning C4244:  'argument': conversion from 'int' to 'T', possible loss of data
-D:\Projects\Appeaser\Appeaser\Game.cpp(111,128): warning C4244:         with
-D:\Projects\Appeaser\Appeaser\Game.cpp(111,128): warning C4244:         [
-D:\Projects\Appeaser\Appeaser\Game.cpp(111,128): warning C4244:             T=float
-D:\Projects\Appeaser\Appeaser\Game.cpp(111,128): warning C4244:         ]
-D:\Projects\Appeaser\Appeaser\Game.cpp(111,73): warning C4244:  'argument': conversion from 'int' to 'T', possible loss of data
-D:\Projects\Appeaser\Appeaser\Game.cpp(111,73): warning C4244:         with
-D:\Projects\Appeaser\Appeaser\Game.cpp(111,73): warning C4244:         [
-D:\Projects\Appeaser\Appeaser\Game.cpp(111,73): warning C4244:             T=float
-D:\Projects\Appeaser\Appeaser\Game.cpp(111,73): warning C4244:         ]
-D:\Projects\Appeaser\Appeaser\Game.cpp(179,55): warning C4244:  'argument': conversion from 'float' to 'int', possible loss of data
-D:\Projects\Appeaser\Appeaser\Game.cpp(179,49): warning C4244:  'argument': conversion from 'float' to 'int', possible loss of data
-D:\Projects\Appeaser\Appeaser\Game.cpp(179,61): warning C4244:  '=': conversion from 'int' to 'float', possible loss of data
+D:\Projects\Appeaser\Appeaser\Game.cpp(137,128): warning C4244:  'argument': conversion from 'int' to 'T', possible loss of data
+D:\Projects\Appeaser\Appeaser\Game.cpp(137,128): warning C4244:         with
+D:\Projects\Appeaser\Appeaser\Game.cpp(137,128): warning C4244:         [
+D:\Projects\Appeaser\Appeaser\Game.cpp(137,128): warning C4244:             T=float
+D:\Projects\Appeaser\Appeaser\Game.cpp(137,128): warning C4244:         ]
+D:\Projects\Appeaser\Appeaser\Game.cpp(137,73): warning C4244:  'argument': conversion from 'int' to 'T', possible loss of data
+D:\Projects\Appeaser\Appeaser\Game.cpp(137,73): warning C4244:         with
+D:\Projects\Appeaser\Appeaser\Game.cpp(137,73): warning C4244:         [
+D:\Projects\Appeaser\Appeaser\Game.cpp(137,73): warning C4244:             T=float
+D:\Projects\Appeaser\Appeaser\Game.cpp(137,73): warning C4244:         ]
+D:\Projects\Appeaser\Appeaser\Game.cpp(217,55): warning C4244:  'argument': conversion from 'float' to 'int', possible loss of data
+D:\Projects\Appeaser\Appeaser\Game.cpp(217,49): warning C4244:  'argument': conversion from 'float' to 'int', possible loss of data
+D:\Projects\Appeaser\Appeaser\Game.cpp(217,61): warning C4244:  '=': conversion from 'int' to 'float', possible loss of data
   Appeaser.vcxproj -> D:\Projects\Appeaser\Appeaser\Debug\Appeaser.exe

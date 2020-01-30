@@ -62,7 +62,7 @@ bool Enemy::IsEnabled() {
 void Enemy::Enable() {
 	enabled = true;
 }
-
+// kill the enemy, not something else
 void Enemy::Kill() {
 	enabled = false;
 	sprite.setScale(Vector2f(0.f, 0.f));
@@ -73,6 +73,7 @@ void Enemy::Kill() {
 
 #pragma region Update
 void Enemy::Update() {
+	// only update enemies that are alive
 	if (enabled) {
 		UpdateVelocity();
 		Moveable::Update();
@@ -80,6 +81,7 @@ void Enemy::Update() {
 }
 
 void Enemy::Render(RenderWindow* aWindow) {
+	// only render living enemies
 	if (enabled) {
 		Moveable::Render(aWindow);
 	}

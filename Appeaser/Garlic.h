@@ -3,7 +3,7 @@
 #include "GameObject.h"
 
 using namespace sf;
-
+// the player's "weapon" to get rid of enemies
 class Garlic : public GameObject {
 
 	private:

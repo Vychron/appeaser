@@ -19,11 +19,17 @@ class Game {
 		float currentWaveTime = 0;
 		float garlicTimer = 3;
 		float currentGarlicTime = 0;
+		bool started = false;
+		bool completed = false;
+		bool completeCheck = false;
 
 		RenderWindow* window;
 		VideoMode videoMode;
 		Event evt;
 		int graveCount = 10;
+
+		Font font;
+		Text text;
 
 		Player player;
 		Gravestone gravestones[10];
