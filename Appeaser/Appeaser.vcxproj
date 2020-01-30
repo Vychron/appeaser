@@ -136,6 +136,7 @@
     <ClCompile Include="Flower.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Garlic.cpp" />
     <ClCompile Include="Gravestone.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Moveable.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="Flower.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Garlic.h" />
     <ClInclude Include="Gravestone.h" />
     <ClInclude Include="Moveable.h" />
     <ClInclude Include="NumberOperations.h" />

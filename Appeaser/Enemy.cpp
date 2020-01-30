@@ -62,6 +62,13 @@ bool Enemy::IsEnabled() {
 void Enemy::Enable() {
 	enabled = true;
 }
+
+void Enemy::Kill() {
+	enabled = false;
+	sprite.setScale(Vector2f(0.f, 0.f));
+	position = Vector2f(-32.f, -32.f);
+	sprite.setPosition(Vector2f(position.x - (16.f), position.y - (16.f)));
+}
 #pragma endregion
 
 #pragma region Update

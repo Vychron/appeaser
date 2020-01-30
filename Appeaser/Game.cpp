@@ -20,6 +20,7 @@ Game::~Game() {
 #pragma region Initialization
 void Game::InitVars() {
 	window = nullptr;
+	garlicTimer *= frameRate;
 }
 
 void Game::InitWindow() {
@@ -45,15 +46,13 @@ const bool Game::running() const {
 
 void Game::Poll() {
 	while (window->pollEvent(evt)) {
-		//Player movement
 		switch (evt.type) {
 			//Closing the game
 			case (Event::Closed):
 				std::cout << "closing the game";
 				window->close();
 				break;
-
-			//Player movement
+			//Player Actions
 			case (Event::KeyPressed):
 				if (evt.key.code == Keyboard::W) {
 					player.SetUpDirection(true);
@@ -80,6 +79,12 @@ void Game::Poll() {
 					if (shortest < 48.f && !flowers[currentI].IsEnabled()) {
 						flowers[currentI].Respawn(gravestones[currentI].GetPosition());
 						flowers[currentI].Enable();
+					}
+				}
+				if (evt.key.code == Keyboard::E) {
+					if (!garlic.IsEnabled()) {
+						garlic.Place(player.GetPosition());
+						std::cout << "A Garlic has been placed.\n";
 					}
 				}
 				break;
@@ -123,8 +128,15 @@ void Game::CheckCollisions() {
 		Sprite waveSprite = wave->GetSprite();
 		if (waveSprite.getGlobalBounds().intersects(rect.getGlobalBounds())) {
 			if (Collision::PixelPerfectTest(rect, waveSprite)) {
-				if (flowers[i].IsEnabled() && !flowers[i].AlreadyReduced()) {
-					flowers[i].ReduceDurability();
+				if (flowers[i].IsEnabled()) {
+					if (!flowers[i].AlreadyReduced()) {
+						flowers[i].ReduceDurability();
+						std::cout << "A flower has been touched by the energy wave and has been damaged.\n";
+						if (flowers[i].GetDurability() < 1.f) {
+							flowers[i].Disable();
+							std::cout << "A flower has been destroyed by the energy wave.\n";
+						}
+					}
 				}
 				else if (!gravestones[i].AlreadyCharging()) {
 					gravestones[i].Charge();
@@ -139,9 +151,6 @@ void Game::CheckCollisions() {
 				std::cout << "you died...\n";
 			}
 		}
-	}
-	for (int i = 0; i < graveCount; i++) {
-		Sprite rect = enemies[i].GetSprite();
 		for (int j = 0; j < graveCount; j++) {
 			if (gravestones[j].GetSprite().getGlobalBounds().intersects(rect.getGlobalBounds())) {
 				if (Collision::PixelPerfectTest(gravestones[j].GetSprite(), rect)) {
@@ -150,21 +159,35 @@ void Game::CheckCollisions() {
 				}
 			}
 		}
+		if (garlic.IsDetonating()) {
+			if (NumberOperations::GetDistanceBetween(enemies[i].GetPosition(), garlic.GetPosition()) < (garlic.GetSprite().getScale().x * garlic.GetSprite().getTexture()->getSize().x) / 2.f) {
+				enemies[i].Kill();
+				gravestones[i].ResetCharge();
+				std::cout << "An spirit has been chased away by the garlic and is now retreating.\n";
+			}
+		}
 	}
 }
 
-void Game::UpdateTimer() {
-	currentTime++;
-	if (currentTime >= timer) {
-		currentTime = 0;
+void Game::UpdateTimers() {
+	currentWaveTime++;
+	if (currentWaveTime >= waveTimer) {
+		currentWaveTime = 0;
 		delete wave;
 		wave = new Wave();
 		wave->Init();
-		timer = NumberOperations::GetRandomNumber(10.f, 20.f) * frameRate;
+		waveTimer = NumberOperations::GetRandomNumber(10.f, 20.f) * frameRate;
 		std::cout << "A wave of energy has appeared...\n";
 		for (int i = 0; i < graveCount; i++) {
 			gravestones[i].EnableCharge();
 			flowers[i].EnableDurability();
+		}
+	}
+	if (garlic.IsEnabled()) {
+		currentGarlicTime++;
+		if (currentGarlicTime >= garlicTimer) {
+			currentGarlicTime = 0;
+			garlic.Detonate();
 		}
 	}
 }
@@ -173,8 +196,9 @@ void Game::UpdateTimer() {
 #pragma region Update
 	void Game::Update() {
 		Poll();
-		UpdateTimer();
+		UpdateTimers();
 		wave->Update();
+		garlic.Update();
 		player.Update();
 		for (int i = 0; i < graveCount; i++) {
 			if (!enemies[i].IsEnabled() && gravestones[i].IsCharged()) {
@@ -184,9 +208,6 @@ void Game::UpdateTimer() {
 				enemies[i].PassPlayerPosition(player.GetPosition());
 			}
 			enemies[i].Update();
-			if (flowers[i].IsEnabled() && flowers[i].GetDurability() <= 0) {
-				flowers[i].Disable();
-			}
 		}
 		CheckCollisions();
 	}
@@ -197,6 +218,7 @@ void Game::UpdateTimer() {
 		for (int i = 0; i < graveCount; i++) { // separate loop to make sure all other sprites are drawn on top
 			flowers[i].Render(window);
 		}
+		garlic.Render(window);
 		player.Render(window);
 		for (int i = 0; i < graveCount; i++) {
 			gravestones[i].Render(window);

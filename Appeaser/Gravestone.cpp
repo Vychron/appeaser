@@ -50,6 +50,8 @@ bool Gravestone::IsCharged() {
 
 void Gravestone::ResetCharge() {
 	chargeValue = 1;
+	isCharged = false;
+	sprite.setColor(Color((255 / chargeCap) * chargeValue, (255 / chargeCap) * chargeValue, 0, 255));
 }
 
 bool Gravestone::AlreadyCharging() {

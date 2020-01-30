@@ -6,6 +6,7 @@
 #include "Enemy.h"
 #include "Wave.h"
 #include "Flower.h"
+#include "Garlic.h"
 
 using namespace sf;
 
@@ -14,8 +15,10 @@ class Game {
 	private:
 
 		int frameRate = 12;
-		float timer = 0;
-		float currentTime = 0;
+		float waveTimer = 0;
+		float currentWaveTime = 0;
+		float garlicTimer = 3;
+		float currentGarlicTime = 0;
 
 		RenderWindow* window;
 		VideoMode videoMode;
@@ -27,10 +30,11 @@ class Game {
 		Enemy enemies[10];
 		Wave* wave;
 		Flower flowers[10];
+		Garlic garlic;
 
 		void GenerateGraves();
 		void CheckCollisions();
-		void UpdateTimer();
+		void UpdateTimers();
 
 		void InitVars();
 		void InitWindow();

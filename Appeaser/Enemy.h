@@ -26,6 +26,7 @@ class Enemy : public Moveable {
 		void Respawn(sf::Vector2f aPosition);
 		bool IsEnabled();
 		void Enable();
+		void Kill();
 
 		void Init();
 		void Update();
