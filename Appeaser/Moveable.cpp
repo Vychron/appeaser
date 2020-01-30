@@ -5,7 +5,7 @@ Moveable::Moveable() : GameObject() {
 
 }
 
-Moveable::Moveable(sf::Vector2f aPosition, sf::Sprite aSprite) : GameObject(aPosition, aSprite) {
+Moveable::Moveable(Vector2f aPosition, Sprite aSprite) : GameObject(aPosition, aSprite) {
 
 }
 
@@ -20,7 +20,7 @@ Moveable::~Moveable() {
 #pragma region Functionality
 void Moveable::Move() {
 	prevPos = position;
-	sf::Vector2f movement = velocity;
+	Vector2f movement = velocity;
 	//Checking boundaries
 	if (position.x < 0 || position.x > 800) {
 		movement.x = 0;
@@ -42,12 +42,12 @@ void Moveable::Move() {
 	}
 	//Updating position
 	position += (NumberOperations::NormalizeVector2f(movement) * moveSpeed);
-	sprite.setPosition(sf::Vector2f(position.x - (texture.getSize().x / 2.f), position.y - (texture.getSize().y / 2.f)));
+	sprite.setPosition(Vector2f(position.x - (texture.getSize().x / 2.f), position.y - (texture.getSize().y / 2.f)));
 }
 
 void Moveable::ResetPos() {
 	position = prevPos;
-	sprite.setPosition(sf::Vector2f(position.x - (texture.getSize().x / 2.f), position.y - (texture.getSize().y / 2.f)));
+	sprite.setPosition(Vector2f(position.x - (texture.getSize().x / 2.f), position.y - (texture.getSize().y / 2.f)));
 }
 #pragma endregion
 
@@ -56,7 +56,7 @@ void Moveable::Update() {
 	Move();
 }
 
-void Moveable::Render(sf::RenderWindow* aWindow) {
+void Moveable::Render(RenderWindow* aWindow) {
 	GameObject::Render(aWindow);
 }
 #pragma endregion

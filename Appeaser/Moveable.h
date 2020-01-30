@@ -3,24 +3,27 @@
 #include "GameObject.h"
 #include "NumberOperations.h"
 
+using namespace sf;
+
 class Moveable : public GameObject {
 
 	public:
 
 		Moveable();
-		Moveable(sf::Vector2f aPosition, sf::Sprite aSprite);
+		Moveable(Vector2f aPosition, Sprite aSprite);
 		virtual ~Moveable();
 
 		void ResetPos();
 
 		void Update();
-		void Render(sf::RenderWindow* aWindow);
+		void Render(RenderWindow* aWindow);
 
 	protected:
 		
 		float moveSpeed = 0;
-		sf::Vector2f velocity;
-		sf::Vector2f prevPos;
+		Vector2f velocity;
+		Vector2f prevPos;
 		virtual void Move();
+
 };
 

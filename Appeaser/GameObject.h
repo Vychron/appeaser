@@ -4,23 +4,26 @@
 #include "iostream"
 #include "Collision.h"
 
+using namespace sf;
+
 class GameObject {
 
 	public:
 
 		GameObject();
-		GameObject(sf::Vector2f aPosition, sf::Sprite aSprite);
+		GameObject(Vector2f aPosition, Sprite aSprite);
 		virtual ~GameObject();
 
-		sf::Vector2f GetPosition();
-		sf::Sprite GetSprite();
+		Vector2f GetPosition();
+		Sprite GetSprite();
 
-		void Render(sf::RenderWindow* aWindow);
+		void Render(RenderWindow* aWindow);
 		
 	protected:
 
-		sf::Vector2f position;
-		sf::Sprite sprite;
-		sf::Texture texture;
+		Vector2f position;
+		Sprite sprite;
+		Texture texture;
+
 };
 

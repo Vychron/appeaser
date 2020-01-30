@@ -5,7 +5,7 @@ Player::Player() : Moveable() {
 
 }
 
-Player::Player(sf::Vector2f aPosition, sf::Sprite aSprite) : Moveable(aPosition, aSprite) {
+Player::Player(Vector2f aPosition, Sprite aSprite) : Moveable(aPosition, aSprite) {
 
 }
 
@@ -24,7 +24,7 @@ void Player::Init() {
 
 #pragma region Functionality
 void Player::UpdateVelocity() {
-	sf::Vector2f vel = velocity;
+	Vector2f vel = velocity;
 
 	//Horizontal velocity
 	if (leftDirection && !rightDirection) {
@@ -48,7 +48,7 @@ void Player::UpdateVelocity() {
 	}
 
 	//Printing the output to the console
-	if (velocity != sf::Vector2f(0.f, 0.f) && velocity != vel) {
+	if (velocity != Vector2f(0.f, 0.f) && velocity != vel) {
 		std::cout << "Player is moving";
 		if (velocity.y < 0.f) {
 			std::cout << " Up";
@@ -89,7 +89,7 @@ void Player::Update() {
 	Moveable::Update();
 }
 
-void Player::Render(sf::RenderWindow* aWindow) {
+void Player::Render(RenderWindow* aWindow) {
 	Moveable::Render(aWindow);
 }
 #pragma endregion

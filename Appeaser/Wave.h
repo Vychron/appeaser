@@ -2,6 +2,8 @@
 
 #include "Moveable.h"
 
+using namespace sf;
+
 class Wave : public Moveable {
 	
 	private:
@@ -14,7 +16,7 @@ class Wave : public Moveable {
 	public:
 
 		Wave();
-		Wave(sf::Vector2f aPosition, sf::Sprite  aSprite);
+		Wave(Vector2f aPosition, Sprite  aSprite);
 		virtual ~Wave();
 
 		void SetRandomDirecion();
@@ -23,7 +25,7 @@ class Wave : public Moveable {
 
 		void Init();
 		void Update();
-		void Render(sf::RenderWindow* aWindow);
+		void Render(RenderWindow* aWindow);
 
 };
 

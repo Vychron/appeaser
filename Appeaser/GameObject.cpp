@@ -2,14 +2,14 @@
 
 #pragma region Construction
 GameObject::GameObject() {
-	sprite = sf::Sprite();
-	position = sf::Vector2f(0.f, 0.f);
+	sprite = Sprite();
+	position = Vector2f(0.f, 0.f);
 }
 
-GameObject::GameObject(sf::Vector2f aPosition, sf::Sprite aSprite) {
+GameObject::GameObject(Vector2f aPosition, Sprite aSprite) {
 	position = aPosition;
 	sprite = aSprite;
-	sprite.setPosition(sf::Vector2f(position.x - (texture.getSize().x /2.f), position.y - (texture.getSize().y / 2.f)));
+	sprite.setPosition(Vector2f(position.x - (texture.getSize().x / 2.f), position.y - (texture.getSize().y / 2.f)));
 }
 
 GameObject::~GameObject() {
@@ -21,17 +21,17 @@ GameObject::~GameObject() {
 #pragma endregion
 
 #pragma region Functionality
-sf::Vector2f GameObject::GetPosition() {
+Vector2f GameObject::GetPosition() {
 	return position;
 }
 
-sf::Sprite GameObject::GetSprite() {
+Sprite GameObject::GetSprite() {
 	return sprite;
 }
 #pragma endregion
 
 #pragma region Update
-void GameObject::Render(sf::RenderWindow* aWindow) {
+void GameObject::Render(RenderWindow* aWindow) {
 	aWindow->draw(sprite);
 }
 #pragma endregion
