@@ -10,7 +10,15 @@ It is your task to appease the spirits by visiting their graves and bring them f
 The around the graveyard there's a strange energy pulsing around, and the waves of energy that flow over the graveyard energize the graves, including the ground below.
 When too much energy gathers in the ground below a grave, the restless spirit reanimates its body and will submerge from the earth to walk among the living once more, but not in good will.
 
-The reanimated bodies will chase you down as long as you don't try to send it back with garlic.
+The reanimated bodies will chase you down as long as you don't try to send them back with garlics that explode in a fume of stench.
+
+## Controls
+
+WASD - Move around
+
+Spacebar - Place flowers on graves
+
+E - Place garlic
 
 ## Game Specifications
 
