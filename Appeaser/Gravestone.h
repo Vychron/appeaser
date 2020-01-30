@@ -2,6 +2,8 @@
 
 #include "GameObject.h"
 
+using namespace sf;
+
 class Gravestone : public GameObject {
 
 	private:
@@ -14,8 +16,8 @@ class Gravestone : public GameObject {
 	public:
 
 		Gravestone();
-		Gravestone(sf::Vector2f, sf::Sprite);
-		Gravestone(sf::Vector2f, sf::Sprite, int);
+		Gravestone(Vector2f, Sprite);
+		Gravestone(Vector2f, Sprite, int);
 		virtual ~Gravestone();
 		
 		bool IsCharged();
@@ -25,7 +27,7 @@ class Gravestone : public GameObject {
 		void EnableCharge();
 
 		void Init();
-		void Update();
-		void Render(sf::RenderWindow*);
+		void Render(RenderWindow*);
+
 };
 

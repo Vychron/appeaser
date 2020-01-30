@@ -4,10 +4,10 @@
 #pragma region Construction
 Game::Game() {
 	wave = new Wave();
-	player = Player(sf::Vector2f(100.f, 100.f), sf::Sprite());
+	player = Player(Vector2f(100.f, 100.f), Sprite());
 	InitVars();
 	InitWindow();
-	GenerateGravestones();
+	GenerateGraves();
 	InitObjects();
 }
 
@@ -25,7 +25,7 @@ void Game::InitVars() {
 void Game::InitWindow() {
 	videoMode.width = 800;
 	videoMode.height = 600;
-	window = new sf::RenderWindow(videoMode, "Appeaser", sf::Style::Titlebar | sf::Style::Close);
+	window = new RenderWindow(videoMode, "Appeaser", Style::Titlebar | Style::Close);
 	window->setFramerateLimit(frameRate);
 }
 
@@ -48,37 +48,52 @@ void Game::Poll() {
 		//Player movement
 		switch (evt.type) {
 			//Closing the game
-			case (sf::Event::Closed):
+			case (Event::Closed):
 				std::cout << "closing the game";
 				window->close();
 				break;
 
 			//Player movement
-			case (sf::Event::KeyPressed):
-				if (evt.key.code == sf::Keyboard::W) {
+			case (Event::KeyPressed):
+				if (evt.key.code == Keyboard::W) {
 					player.SetUpDirection(true);
 				}
-				if (evt.key.code == sf::Keyboard::S) {
+				if (evt.key.code == Keyboard::S) {
 					player.SetDownDirection(true);
 				}
-				if (evt.key.code == sf::Keyboard::A) {
+				if (evt.key.code == Keyboard::A) {
 					player.SetLeftDirection(true);
 				}
-				if (evt.key.code == sf::Keyboard::D) {
+				if (evt.key.code == Keyboard::D) {
 					player.SetRightDirection(true);
 				}
+				if (evt.key.code == Keyboard::Space) {
+					float shortest = 1000.f;
+					int currentI = 0;
+					for (int i = 0; i < graveCount; i++) {
+						float current = NumberOperations::GetDistanceBetween(player.GetPosition(), gravestones[i].GetPosition() + Vector2f(0.f, 32.f));
+						if (current < shortest) {
+							shortest = current;
+							currentI = i;
+						}
+					}
+					if (shortest < 48.f && !flowers[currentI].IsEnabled()) {
+						flowers[currentI].Respawn(gravestones[currentI].GetPosition());
+						flowers[currentI].Enable();
+					}
+				}
 				break;
-			case (sf::Event::KeyReleased):
-				if (evt.key.code == sf::Keyboard::W) {
+			case (Event::KeyReleased):
+				if (evt.key.code == Keyboard::W) {
 					player.SetUpDirection(false);
 				}
-				if (evt.key.code == sf::Keyboard::S) {
+				if (evt.key.code == Keyboard::S) {
 					player.SetDownDirection(false);
 				}
-				if (evt.key.code == sf::Keyboard::A) {
+				if (evt.key.code == Keyboard::A) {
 					player.SetLeftDirection(false);
 				}
-				if (evt.key.code == sf::Keyboard::D) {
+				if (evt.key.code == Keyboard::D) {
 					player.SetRightDirection(false);
 				}
 				break;
@@ -86,34 +101,39 @@ void Game::Poll() {
 	}
 }
 
-void Game::GenerateGravestones() {
+void Game::GenerateGraves() {
 	for (int i = 0; i < graveCount; i++) {
-		gravestones[i] = Gravestone(sf::Vector2f(NumberOperations::GetRandomNumber(0, videoMode.width), NumberOperations::GetRandomNumber(0, videoMode.height)), sf::Sprite(), NumberOperations::GetRandomNumber(0, 8));
-		enemies[i] = Enemy(sf::Vector2f(-32.f, -32.f), sf::Sprite());
-		enemies[i].GetSprite().setScale(sf::Vector2f(0.f, 0.f));
+		gravestones[i] = Gravestone(Vector2f(NumberOperations::GetRandomNumber(0, videoMode.width), NumberOperations::GetRandomNumber(0, videoMode.height)), Sprite(), NumberOperations::GetRandomNumber(0, 8));
+		enemies[i] = Enemy(Vector2f(-32.f, -32.f), Sprite());
+		enemies[i].GetSprite().setScale(Vector2f(0.f, 0.f));
+		flowers[i] = Flower(Vector2f(-32.f, -32.f), Sprite());
+		flowers[i].GetSprite().setScale(Vector2f(0.f, 0.f));
 	}
 }
 
 void Game::CheckCollisions() {
-	sf::Sprite playerSprite = player.GetSprite();
+	Sprite playerSprite = player.GetSprite();
 	for (int i = 0; i < graveCount; i++) {
-		sf::Sprite rect = gravestones[i].GetSprite();
+		Sprite rect = gravestones[i].GetSprite();
 		if (playerSprite.getGlobalBounds().intersects(rect.getGlobalBounds())) {
-			if (Collision::PixelPerfectTest(rect, playerSprite, 255.f)) {
+			if (Collision::PixelPerfectTest(rect, playerSprite)) {
 				player.ResetPos();
 			}
 		}
-		sf::Sprite waveSprite = wave->GetSprite();
+		Sprite waveSprite = wave->GetSprite();
 		if (waveSprite.getGlobalBounds().intersects(rect.getGlobalBounds())) {
 			if (Collision::PixelPerfectTest(rect, waveSprite)) {
-				if (!gravestones[i].AlreadyCharging()) {
+				if (flowers[i].IsEnabled() && !flowers[i].AlreadyReduced()) {
+					flowers[i].ReduceDurability();
+				}
+				else if (!gravestones[i].AlreadyCharging()) {
 					gravestones[i].Charge();
 				}
 			}
 		}
 	}
 	for (int i = 0; i < graveCount; i++) {
-		sf::Sprite rect = enemies[i].GetSprite();
+		Sprite rect = enemies[i].GetSprite();
 		if (playerSprite.getGlobalBounds().intersects(rect.getGlobalBounds())) {
 			if (Collision::PixelPerfectTest(enemies[i].GetSprite(), player.GetSprite())) {
 				std::cout << "you died...\n";
@@ -121,10 +141,10 @@ void Game::CheckCollisions() {
 		}
 	}
 	for (int i = 0; i < graveCount; i++) {
-		sf::Sprite rect = enemies[i].GetSprite();
-		for (Gravestone g : gravestones) {
-			if (g.GetSprite().getGlobalBounds().intersects(rect.getGlobalBounds())) {
-				if (Collision::PixelPerfectTest(g.GetSprite(), rect)) {
+		Sprite rect = enemies[i].GetSprite();
+		for (int j = 0; j < graveCount; j++) {
+			if (gravestones[j].GetSprite().getGlobalBounds().intersects(rect.getGlobalBounds())) {
+				if (Collision::PixelPerfectTest(gravestones[j].GetSprite(), rect)) {
 					enemies[i].ResetPos();
 					enemies[i].RecalculateVelocity();
 				}
@@ -144,6 +164,7 @@ void Game::UpdateTimer() {
 		std::cout << "A wave of energy has appeared...\n";
 		for (int i = 0; i < graveCount; i++) {
 			gravestones[i].EnableCharge();
+			flowers[i].EnableDurability();
 		}
 	}
 }
@@ -161,7 +182,10 @@ void Game::UpdateTimer() {
 			}
 			if (enemies[i].IsEnabled()) {
 				enemies[i].PassPlayerPosition(player.GetPosition());
-				enemies[i].Update();
+			}
+			enemies[i].Update();
+			if (flowers[i].IsEnabled() && flowers[i].GetDurability() <= 0) {
+				flowers[i].Disable();
 			}
 		}
 		CheckCollisions();
@@ -169,16 +193,15 @@ void Game::UpdateTimer() {
 
 	void Game::Render() {
 		window->clear(sf::Color(50, 200, 100));
-
 		wave->Render(window);
+		for (int i = 0; i < graveCount; i++) { // separate loop to make sure all other sprites are drawn on top
+			flowers[i].Render(window);
+		}
 		player.Render(window);
 		for (int i = 0; i < graveCount; i++) {
 			gravestones[i].Render(window);
-			if (enemies[i].IsEnabled()) {
-				enemies[i].Render(window);
-			}
+			enemies[i].Render(window);
 		}
-
 		window->display();
 	}
 #pragma endregion

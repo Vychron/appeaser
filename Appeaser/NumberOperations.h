@@ -2,11 +2,16 @@
 
 #include <SFML/Graphics.hpp>
 
-class NumberOperations
-{
+using namespace sf;
+
+class NumberOperations {
+
 	public:
 
 		static int GetRandomNumber(int aMin, int aMax);
 
-		static sf::Vector2f NormalizeVector2f(sf::Vector2f aVector2);
+		static Vector2f NormalizeVector2f(Vector2f aVector2);
+
+		static float GetDistanceBetween(Vector2f aVector2, Vector2f anotherVector2);
+
 };

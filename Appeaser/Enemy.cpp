@@ -6,7 +6,7 @@ Enemy::Enemy() : Moveable() {
 
 }
 
-Enemy::Enemy(sf::Vector2f aPosition, sf::Sprite aSprite) : Moveable(aPosition, aSprite) {
+Enemy::Enemy(Vector2f aPosition, Sprite aSprite) : Moveable(aPosition, aSprite) {
 
 }
 
@@ -20,7 +20,7 @@ void Enemy::Init() {
 	moveSpeed = 5.f;
 	texture.loadFromFile("Images/Player-Front.png");
 	sprite.setTexture(texture);
-	sprite.setColor(sf::Color::Red);
+	sprite.setColor(Color::Red);
 }
 #pragma endregion
 
@@ -33,25 +33,25 @@ void Enemy::UpdateVelocity() {
 			velocity = playerPosition - position;
 		}
 		else {
-			velocity = sf::Vector2f(NumberOperations::GetRandomNumber(-1, 1), NumberOperations::GetRandomNumber(-1, 1));
+			velocity = Vector2f(NumberOperations::GetRandomNumber(-1, 1), NumberOperations::GetRandomNumber(-1, 1));
 		}
 	}
 }
 
 void Enemy::RecalculateVelocity() {
-	velocity = sf::Vector2f(0.f, 0.f);
+	velocity = Vector2f(0.f, 0.f);
 	stepCount = stepCountMax;
 }
 
-void Enemy::PassPlayerPosition(sf::Vector2f aPosition) {
+void Enemy::PassPlayerPosition(Vector2f aPosition) {
 	playerPosition = aPosition;
 }
 
-void Enemy::Respawn(sf::Vector2f aPosition) {
+void Enemy::Respawn(Vector2f aPosition) {
 	enabled = true;
-	position = aPosition + sf::Vector2f(16.f, 48.f);
-	sprite.setScale(sf::Vector2f(1.f, 1.f));
-	sprite.setPosition(sf::Vector2f(position.x - (16.f), position.y - (16.f)));
+	position = aPosition + Vector2f(0.f, 32.f);
+	sprite.setScale(Vector2f(1.f, 1.f));
+	sprite.setPosition(Vector2f(position.x - (16.f), position.y - (16.f)));
 	Init();
 }
 
@@ -66,11 +66,15 @@ void Enemy::Enable() {
 
 #pragma region Update
 void Enemy::Update() {
-	UpdateVelocity();
-	Moveable::Update();
+	if (enabled) {
+		UpdateVelocity();
+		Moveable::Update();
+	}
 }
 
-void Enemy::Render(sf::RenderWindow* aWindow) {
-	Moveable::Render(aWindow);
+void Enemy::Render(RenderWindow* aWindow) {
+	if (enabled) {
+		Moveable::Render(aWindow);
+	}
 }
 #pragma endregion

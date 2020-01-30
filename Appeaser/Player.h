@@ -2,8 +2,9 @@
 
 #include "Moveable.h"
 
-class Player : public Moveable {
+using namespace sf;
 
+class Player : public Moveable {
 		
 	private:
 
@@ -17,7 +18,7 @@ class Player : public Moveable {
 	public:
 	
 		Player();
-		Player(sf::Vector2f aPosition, sf::Sprite aSprite);
+		Player(Vector2f aPosition, Sprite aSprite);
 		virtual ~Player();
 	
 		void SetUpDirection(bool active);
@@ -27,6 +28,7 @@ class Player : public Moveable {
 
 		void Init();
 		void Update();
-		void Render(sf::RenderWindow* aWindow);
+		void Render(RenderWindow* aWindow);
+
 };
 

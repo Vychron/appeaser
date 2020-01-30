@@ -2,6 +2,8 @@
 
 #include "Moveable.h"
 
+using namespace sf;
+
 class Enemy : public Moveable {
 
 	private:
@@ -13,20 +15,21 @@ class Enemy : public Moveable {
 
 	public:
 
-		sf::Vector2f playerPosition = sf::Vector2f(0.f, 0.f);
+		Vector2f playerPosition = Vector2f(0.f, 0.f);
 
 		Enemy();
-		Enemy(sf::Vector2f aPosition, sf::Sprite aSprite);
+		Enemy(Vector2f aPosition, Sprite aSprite);
 		virtual ~Enemy();
 
 		void RecalculateVelocity();
-		void PassPlayerPosition(sf::Vector2f aPosition);
+		void PassPlayerPosition(Vector2f aPosition);
 		void Respawn(sf::Vector2f aPosition);
 		bool IsEnabled();
 		void Enable();
 
 		void Init();
 		void Update();
-		void Render(sf::RenderWindow* aWindow);
+		void Render(RenderWindow* aWindow);
+
 };
 
