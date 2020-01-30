@@ -38,6 +38,6 @@ Used libraries: SFML 2.5.1
 
 [Tutorial on events in SFML](https://www.youtube.com/watch?v=R1vTc3v6dwo&list=PLRtjMdoYXLf776y4K432eL_qPw4na_py3&index=3)
 
-## Under Construction
+## Future Plans
 
-The game is still under construction, if you happened to come across this repository and are wondering about the progress of the game, feel free to take a look at the [Trello board](https://trello.com/b/cqnfjlR8/appeaser).
+This game was planned to be a bit more "interesting" or "complete", and I might continue on this one day, feel free to take a look at the [Trello board](https://trello.com/b/cqnfjlR8/appeaser).
