@@ -9,10 +9,6 @@ Gravestone::Gravestone(Vector2f aPosition, Sprite aSprite) : GameObject(aPositio
 
 }
 
-Gravestone::Gravestone(Vector2f aPosition, Sprite aSprite, int aChargeValue) : GameObject(aPosition, aSprite) {
-	chargeValue = aChargeValue;
-}
-
 Gravestone::~Gravestone() {
 
 }
@@ -20,6 +16,7 @@ Gravestone::~Gravestone() {
 
 #pragma region Initialization
 void Gravestone::Init() {
+	chargeValue = NumberOperations::GetRandomNumber(0, 8);
 	texture.loadFromFile("Images/Gravestone.png");
 	sprite.setTexture(texture);
 	sprite.setColor(Color((255 / chargeCap) * chargeValue, (255 / chargeCap) * chargeValue, 0, 255));

@@ -1,5 +1,5 @@
 #include "Game.h"
-#include "NumberOperations.h"
+
 
 #pragma region Construction
 Game::Game() {
@@ -134,7 +134,7 @@ void Game::Poll() {
 
 void Game::GenerateGraves() {
 	for (int i = 0; i < graveCount; i++) {
-		gravestones[i] = Gravestone(Vector2f(NumberOperations::GetRandomNumber(0, videoMode.width), NumberOperations::GetRandomNumber(0, videoMode.height)), Sprite(), NumberOperations::GetRandomNumber(0, 8));
+		//gravestones[i] = Gravestone(Vector2f(NumberOperations::GetRandomNumber(0, videoMode.width), NumberOperations::GetRandomNumber(0, videoMode.height)), Sprite(), NumberOperations::GetRandomNumber(0, 8));
 		enemies[i] = Enemy(Vector2f(-32.f, -32.f), Sprite());
 		enemies[i].GetSprite().setScale(Vector2f(0.f, 0.f));
 		flowers[i] = Flower(Vector2f(-32.f, -32.f), Sprite());

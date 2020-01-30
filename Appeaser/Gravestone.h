@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameObject.h"
+#include "NumberOperations.h"
 
 using namespace sf;
 // a rather troublesome, stationary object. it serves as a spawn point for enemies
@@ -17,7 +18,6 @@ class Gravestone : public GameObject {
 
 		Gravestone();
 		Gravestone(Vector2f, Sprite);
-		Gravestone(Vector2f, Sprite, int);
 		virtual ~Gravestone();
 		
 		bool IsCharged();

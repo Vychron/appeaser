@@ -19,6 +19,8 @@ void Player::Init() {
 	moveSpeed = 4.f;
 	texture.loadFromFile("Images/Player-Front.png");
 	sprite.setTexture(texture);
+	position = Vector2f(400.f, 300.f);
+	sprite.setPosition(Vector2f(position.x - (texture.getSize().x / 2.f), position.y - (texture.getSize().y / 2.f)));
 }
 #pragma endregion
 

@@ -7,6 +7,7 @@
 #include "Wave.h"
 #include "Flower.h"
 #include "Garlic.h"
+#include "NumberOperations.h"
 
 using namespace sf;
 
@@ -26,16 +27,41 @@ class Game {
 		RenderWindow* window;
 		VideoMode videoMode;
 		Event evt;
-		int graveCount = 10;
+		int graveCount = 24;
 
 		Font font;
 		Text text;
 
 		Player player;
-		Gravestone gravestones[10];
-		Enemy enemies[10];
+		Gravestone gravestones[28] = {
+			Gravestone(Vector2f(100.f, 100.f), Sprite()),
+			Gravestone(Vector2f(150.f, 100.f), Sprite()),
+			Gravestone(Vector2f(200.f, 100.f), Sprite()),
+			Gravestone(Vector2f(600.f, 100.f), Sprite()),
+			Gravestone(Vector2f(650.f, 100.f), Sprite()),
+			Gravestone(Vector2f(700.f, 100.f), Sprite()),
+			Gravestone(Vector2f(100.f, 200.f), Sprite()),
+			Gravestone(Vector2f(150.f, 200.f), Sprite()),
+			Gravestone(Vector2f(200.f, 200.f), Sprite()),
+			Gravestone(Vector2f(600.f, 200.f), Sprite()),
+			Gravestone(Vector2f(650.f, 200.f), Sprite()),
+			Gravestone(Vector2f(700.f, 200.f), Sprite()),
+			Gravestone(Vector2f(100.f, 400.f), Sprite()),
+			Gravestone(Vector2f(150.f, 400.f), Sprite()),
+			Gravestone(Vector2f(200.f, 400.f), Sprite()),
+			Gravestone(Vector2f(600.f, 400.f), Sprite()),
+			Gravestone(Vector2f(650.f, 400.f), Sprite()),
+			Gravestone(Vector2f(700.f, 400.f), Sprite()),
+			Gravestone(Vector2f(100.f, 500.f), Sprite()),
+			Gravestone(Vector2f(150.f, 500.f), Sprite()),
+			Gravestone(Vector2f(200.f, 500.f), Sprite()),
+			Gravestone(Vector2f(600.f, 500.f), Sprite()),
+			Gravestone(Vector2f(650.f, 500.f), Sprite()),
+			Gravestone(Vector2f(700.f, 500.f), Sprite())
+		};
+		Enemy enemies[28];
 		Wave* wave;
-		Flower flowers[10];
+		Flower flowers[28];
 		Garlic garlic;
 
 		void GenerateGraves();
