@@ -17,9 +17,6 @@ GameObject::~GameObject() {
 }
 #pragma endregion
 
-#pragma region Initialization
-#pragma endregion
-
 #pragma region Functionality
 Vector2f GameObject::GetPosition() {
 	return position;

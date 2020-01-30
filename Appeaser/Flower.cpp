@@ -66,6 +66,7 @@ void Flower::EnableDurability() {
 
 #pragma region Update
 void Flower::Render(RenderWindow* aWindow) {
+	// only render "existing" flowers
 	if (enabled) {
 		GameObject::Render(aWindow);
 	}

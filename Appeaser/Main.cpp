@@ -4,13 +4,10 @@ int main() {
 
 	Game game;
 
-	//Game update loop
+	// game update loop, keeping the main file clean
 	while (game.running()) {
 
-		//Update
 		game.Update();
-
-		//Render
 		game.Render();
 	}
 

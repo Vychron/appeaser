@@ -5,7 +5,7 @@
 #include "Collision.h"
 
 using namespace sf;
-
+// the base game object every instance in the game derives from
 class GameObject {
 
 	public:

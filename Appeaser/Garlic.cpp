@@ -36,7 +36,7 @@ bool Garlic::IsEnabled() {
 bool Garlic::IsDetonating() {
 	return isDetonating;
 }
-
+// Let the garlic explode into a fume of stench
 void Garlic::Detonate() {
 	texture.loadFromFile("Images/Shockwave.png");
 	sprite.setTexture(texture);
@@ -46,8 +46,10 @@ void Garlic::Detonate() {
 #pragma endregion
 
 #pragma region Update
+// don't update if disabled
 void Garlic::Update() {
 	if (enabled) {
+		// expand the fume for a short time
 		if (isDetonating) {
 			if (sprite.getScale().x < 3) {
 				sprite.setScale(sprite.getScale() + Vector2f(0.5f, 0.5f));
@@ -64,6 +66,7 @@ void Garlic::Update() {
 }
 
 void Garlic::Render(RenderWindow* aWindow) {
+	// don't render if disabled
 	if (enabled) {
 		GameObject::Render(aWindow);
 	}

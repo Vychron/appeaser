@@ -3,7 +3,7 @@
 #include "GameObject.h"
 
 using namespace sf;
-
+// a rather troublesome, stationary object. it serves as a spawn point for enemies
 class Gravestone : public GameObject {
 
 	private:

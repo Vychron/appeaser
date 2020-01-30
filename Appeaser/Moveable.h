@@ -4,7 +4,7 @@
 #include "NumberOperations.h"
 
 using namespace sf;
-
+// derived from GameObject, all moving instances derive from this
 class Moveable : public GameObject {
 
 	public:

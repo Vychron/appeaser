@@ -3,7 +3,7 @@
 #include "Moveable.h"
 
 using namespace sf;
-
+// a basic enemy that poses a threat to the player
 class Enemy : public Moveable {
 
 	private:

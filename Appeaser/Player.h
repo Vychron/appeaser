@@ -3,7 +3,7 @@
 #include "Moveable.h"
 
 using namespace sf;
-
+// as the name implies, this is the character that the player controls
 class Player : public Moveable {
 		
 	private:

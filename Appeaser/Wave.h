@@ -3,7 +3,7 @@
 #include "Moveable.h"
 
 using namespace sf;
-
+// The main obstacle in this game, causes enemies to spawn and interrupts progression
 class Wave : public Moveable {
 	
 	private:
